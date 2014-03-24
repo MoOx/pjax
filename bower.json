@@ -1,0 +1,32 @@
+{
+  "name": "pjax",
+  "main": "pjax.js",
+  "version": "0.0.0",
+  "homepage": "https://github.com/MoOx/pjax",
+  "authors": [
+    "Maxime Thirouin <m@moox.io>"
+  ],
+  "description": "Boost browsing experience using Ajax navigation (+ Push state)",
+  "moduleType": [
+    "amd",
+    "globals",
+    "node"
+  ],
+  "keywords": [
+    "pjax",
+    "push",
+    "state",
+    "ajax",
+    "navigation",
+    "transition",
+    "animation"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
