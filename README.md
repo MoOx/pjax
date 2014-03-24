@@ -12,6 +12,11 @@ to deliver a fast browsing experience.
 _It allow you to completely transform user experience of standard websites
 (server side generated or static ones) to make them feel they browse an app._
 
+## No tests or Demo ?
+
+There is still a lot of work to do to make this repo sexy like tests & simple demo,
+but for now [you can see this running on my website](http://moox.io), with sexy CSS animations when switching pages.
+
 ## How Pjax works
 
 Pjax loads page using ajax & updates the browser's current url using pushState without reloading your page's layout or any resources (js, css), giving a fast page load.
@@ -464,8 +469,9 @@ new Pjax()
 document.addEventListener("pjax:success", whenContainerReady)
 ```
 
+## [Changelog](CHANGELOG.md)
 
-## [Contributing]
+## Contributing
 
 Please read the file nobody reads (make me lie) [CONTRIBUTING.md](CONTRIBUTING.md)
 
@@ -481,7 +487,5 @@ $ gulp
 
 Now you can work on the file, then make a commit and a push something when gulp doesn't show any error.
 Thanks.
-
-## [CHANGELOG](CHANGELOG.md)
 
 ## [License](LICENSE-MIT)
