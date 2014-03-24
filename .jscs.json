@@ -1,0 +1,147 @@
+{
+    "excludeFiles": [
+    ]
+  , "requireCurlyBraces": [
+        "if"
+      , "else"
+      , "for"
+      , "while"
+      , "do"
+      , "try"
+      , "catch"
+    ]
+  , "requireSpaceAfterKeywords": [
+      "if"
+    , "else"
+    , "for"
+    , "while"
+    , "do"
+    , "switch"
+    , "return"
+    , "try"
+    , "catch"
+  ]
+  , "requireSpacesInFunctionExpression": {
+      "beforeOpeningCurlyBrace": true
+  }
+  , "disallowSpacesInFunctionExpression": {
+      "beforeOpeningRoundBrace": true
+  }
+  , "disallowEmptyBlocks": true
+  , "disallowSpacesInsideObjectBrackets": true
+  , "disallowSpacesInsideArrayBrackets": true
+  , "disallowSpacesInsideParentheses": true
+  , "disallowSpaceAfterObjectKeys": true
+  , "disallowCommaBeforeLineBreak": true
+  , "requireOperatorBeforeLineBreak": [
+      "?"
+    , "+"
+    , "-"
+    , "/"
+    , "*"
+    , "="
+    , "=="
+    , "==="
+    , "!="
+    , "!=="
+    , ">"
+    , ">="
+    , "<"
+    , "<="
+  ]
+  , "disallowLeftStickedOperators": [
+      "?"
+    , "+"
+    , "-"
+    , "/"
+    , "*"
+    , "="
+    , "=="
+    , "==="
+    , "!="
+    , "!=="
+    , ">"
+    , ">="
+    , "<"
+    , "<="
+  ]
+  , "requireRightStickedOperators": [
+      "!"
+  ]
+  , "disallowRightStickedOperators": [
+      "?"
+    , "+"
+    , "/"
+    , "*"
+    , ":"
+    , "="
+    , "=="
+    , "==="
+    , "!="
+    , "!=="
+    , ">"
+    , ">="
+    , "<"
+    , "<="
+  ]
+  , "disallowSpaceAfterPrefixUnaryOperators": [
+      "++"
+    , "--"
+    , "+"
+    , "-"
+    , "~"
+    , "!"
+  ]
+  , "disallowSpaceBeforePostfixUnaryOperators": [
+      "++"
+    , "--"
+  ]
+  , "requireSpaceBeforeBinaryOperators": [
+      "+"
+    , "-"
+    , "/"
+    , "*"
+    , "="
+    , "=="
+    , "==="
+    , "!="
+    , "!=="
+  ]
+  , "requireSpaceAfterBinaryOperators": [
+      "+"
+    , "-"
+    , "/"
+    , "*"
+    , "="
+    , "=="
+    , "==="
+    , "!="
+    , "!=="
+  ]
+  , "disallowImplicitTypeConversion": [
+      "numeric"
+    , "boolean"
+    , "binary"
+    , "string"
+  ]
+  , "disallowKeywords": [
+      "with"
+  ]
+  , "disallowMultipleLineStrings": true
+
+  , "validateQuoteMarks": "\""
+  , "disallowMixedSpacesAndTabs": true
+  , "disallowTrailingWhitespace": true
+
+  , "requireKeywordsOnNewLine": [
+  ]
+  , "requireLineFeedAtFileEnd": true
+  , "requireCapitalizedConstructors": true
+  , "safeContextKeyword": "that"
+
+  , "validateJSDoc": {
+     "checkParamNames": true
+    , "checkRedundantParams": true
+    , "requireParamTypes": true
+  }
+}
