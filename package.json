@@ -1,6 +1,6 @@
 {
   "name": "pjax",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Boost browsing experience using Ajax navigation (+ Push state)",
   "main": "pjax.js",
   "scripts": {
