@@ -14,8 +14,9 @@ _It allow you to completely transform user experience of standard websites
 
 ## No tests or Demo ?
 
-There is still a lot of work to do to make this repo sexy like tests & simple demo,
-but for now [you can see this running on my website](http://moox.io), with sexy CSS animations when switching pages.
+There is still some work to make this repo sexy with tests & simple demo.
+
+For now [you can see this running on my website](http://moox.io), with sexy CSS animations when switching pages.
 
 ## How Pjax works
 
