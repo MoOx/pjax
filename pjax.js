@@ -1,4 +1,4 @@
-(function(root, factory) {
+;(function(root, factory) {
   if (typeof exports === "object") {
     // CommonJS
     module.exports = factory()
@@ -12,6 +12,8 @@
     root.Pjax = factory()
   }
 }(this, function() {
+  "use strict";
+
   function newUid() {
     return (new Date().getTime())
   }
@@ -582,4 +584,5 @@
 
     return stupidPjax
   }
-}))
+
+}));
