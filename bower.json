@@ -1,7 +1,7 @@
 {
   "name": "pjax",
   "main": "pjax.js",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "homepage": "https://github.com/MoOx/pjax",
   "authors": [
     "Maxime Thirouin <m@moox.io>"
