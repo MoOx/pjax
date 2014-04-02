@@ -470,6 +470,8 @@ new Pjax()
 document.addEventListener("pjax:success", whenContainerReady)
 ```
 
+---
+
 ## [Changelog](CHANGELOG.md)
 
 ## Contributing
