@@ -472,6 +472,69 @@ document.addEventListener("pjax:success", whenContainerReady)
 
 ---
 
+## FAQ
+
+### Q: Disqus doesn't work anymore, how can I fix that ?
+
+A: There is a few things you need to do:
+- wrap your disqus snippet into a dom element that you will add to the `selector`
+arra (or just wrap it with class="js-Pjax") & be sure to have a least the empty
+wrapper on each page (to avoid differences of DOM between pages)
+- edit your disqus snippet like the one below
+
+#### Disqus snippet before pjax integration
+
+```html
+<script>
+  var disqus_shortname = 'YOURSHORTNAME'
+  , disqus_identifier = 'PAGEID'
+  , disqus_url = 'PAGEURL'
+  , disqus_script = 'embed.js'
+  (function(d,s) {
+  s = d.createElement('script');s.async=1;s.src = '//' + disqus_shortname + '.disqus.com/'+disqus_script;
+  (d.getElementsByTagName('head')[0]).appendChild(s);
+  })(document)
+</script>
+```
+
+#### Disqus snippet after Pjax integration
+
+```html
+<div class="js-Pjax"><!-- need to be here on every pjaxified page, even if empty -->
+<!-- if (blah blah) { // eventual server side test to know wheter or not you include this script -->
+  <script>
+    var disqus_shortname = 'YOURSHORTNAME'
+    , disqus_identifier = 'PAGEID'
+    , disqus_url = 'PAGEURL'
+    , disqus_script = 'embed.js'
+
+    // here we will only load the disqus <script> if not already loaded
+    if (!window.DISQUS) {
+      (function(d,s) {
+      s = d.createElement('script');s.async=1;s.src = '//' + disqus_shortname + '.disqus.com/'+disqus_script;
+      (d.getElementsByTagName('head')[0]).appendChild(s);
+      })(document)
+    }
+    // if disqus <script> already loaded, we just reset disqus the right way
+    // see http://help.disqus.com/customer/portal/articles/472107-using-disqus-on-ajax-sites
+    else {
+      DISQUS.reset({
+        reload: true,
+        config: function () {
+          this.page.identifier = disqus_identifier
+          this.page.url = disqus_url
+        }
+      })
+    }
+  </script>
+<!-- } -->
+</div>
+```
+
+**Note: The thing you need to understand is that Pjax handle inline `<script>` only for container you are reloading.**
+
+---
+
 ## [Changelog](CHANGELOG.md)
 
 ## Contributing
