@@ -1,6 +1,6 @@
 {
   "name": "pjax",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Boost browsing experience using Ajax navigation (+ Push state)",
   "main": "src/pjax.js",
   "homepage": "https://github.com/MoOx/pjax",
