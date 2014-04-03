@@ -2,7 +2,7 @@
   "name": "pjax",
   "version": "0.1.1",
   "description": "Boost browsing experience using Ajax navigation (+ Push state)",
-  "main": "pjax.js",
+  "main": "src/pjax.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -30,6 +30,7 @@
     "gulp-jscs": "^0.3.2",
     "gulp-plumber": "^0.5.6",
     "gulp": "^3.5.6",
-    "gulp-jshint": "^1.5.1"
+    "gulp-jshint": "^1.5.1",
+    "buildbranch": "0.0.1"
   }
 }
