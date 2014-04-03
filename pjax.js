@@ -340,8 +340,25 @@
 
   , loadContent: function(html, options) {
       var tmpEl = document.implementation.createHTMLDocument()
+
+        // parse HTML attributes to copy them
+        // since we are forced to use documentElement.innerHTML (outerHTML can't be used for <html>)
+        , htmlRegex = /<html[^>]+>/gi
+        , htmlAttribsRegex = /\s?[a-z:]+(?:\=(?:\'|\")[^\'\">]+(?:\'|\"))*/gi
+        , matches = html.match(htmlRegex)
+        if (matches.length) {
+          matches = matches[0].match(htmlAttribsRegex)
+          if (matches.length) {
+            matches.shift()
+            matches.forEach(function(htmlAttrib) {
+              var attr = htmlAttrib.trim().split("=")
+              tmpEl.documentElement.setAttribute(attr[0], attr[1].slice(1, -1))
+            })
+          }
+        }
+
       tmpEl.documentElement.innerHTML = html
-      // this.log("load content", tmpEl.documentElement.innerHTML)
+      this.log("load content", tmpEl.documentElement.attributes, tmpEl.documentElement.innerHTML.length)
       // try {
         this.switchSelectors(this.options.selectors, tmpEl, document, options)
 
