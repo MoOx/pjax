@@ -1,7 +1,7 @@
 {
   "name": "pjax",
   "version": "0.1.2",
-  "description": "Boost browsing experience using Ajax navigation (+ Push state)",
+  "description": "Easily enable fast Ajax navigation on any website (using pushState +  xhr)",
   "main": "src/pjax.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

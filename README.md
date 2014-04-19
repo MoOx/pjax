@@ -2,7 +2,7 @@
 
 <img align="right" src="https://dl.dropboxusercontent.com/u/14108185/memes/mind-blow.gif">
 
-> When Ajax navigation meets Push State
+> Easily enable fast Ajax navigation on any website (using pushState +  xhr)
 
 Pjax is ~~a jQuery plugin~~ **a standalone JavaScript module** that uses
 ajax (XmlHttpRequest) and
@@ -10,7 +10,10 @@ ajax (XmlHttpRequest) and
 to deliver a fast browsing experience.
 
 _It allow you to completely transform user experience of standard websites
-(server side generated or static ones) to make them feel they browse an app._
+(server side generated or static ones) to make them feel they browse an app.
+Especially for user that have low bandwidth connection._
+
+**No more full page reload. No more lots of HTTP request.**
 
 ## No tests or Demo ?
 
@@ -223,7 +226,7 @@ Callbacks are binded to Pjax instance itself to allow you to reuse it (ex: `this
 
 ###### Create a switch callback
 
-Your function can do whatever you want, be should
+Your function can do whatever you want, but you need to:
 
 - replace oldEl content by newEl content in some fashion
 - call `this.onSwitch()` to trigger attached callback.
@@ -274,7 +277,7 @@ new Pjax({
 })
 ```
 _Note that remove class include `Animated--reverse` which is a simple way to not have
-to create duplicate transition for (slideIn + reverse => slideOut).
+to create duplicate transition for (slideIn + reverse => slideOut)._
 
 The following CSS will be required to make something nice
 
