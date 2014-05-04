@@ -1,5 +1,7 @@
 # Pjax
 
+[![browser support](https://ci.testling.com/MoOx/pjax.png)](https://ci.testling.com/MoOx/pjax)
+
 <img align="right" src="https://dl.dropboxusercontent.com/u/14108185/memes/mind-blow.gif">
 
 > Easily enable fast Ajax navigation on any website (using pushState +  xhr)
@@ -15,9 +17,7 @@ Especially for user that have low bandwidth connection._
 
 **No more full page reload. No more lots of HTTP request.**
 
-## No tests or Demo ?
-
-There is still some work to make this repo sexy with tests & simple demo.
+## Demo
 
 For now [you can see this running on my website](http://moox.io), with sexy CSS animations when switching pages.
 
