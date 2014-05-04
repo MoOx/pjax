@@ -2,8 +2,6 @@
 
 [![browser support](https://ci.testling.com/MoOx/pjax.png)](https://ci.testling.com/MoOx/pjax)
 
-<img align="right" src="https://dl.dropboxusercontent.com/u/14108185/memes/mind-blow.gif">
-
 > Easily enable fast Ajax navigation on any website (using pushState +  xhr)
 
 Pjax is ~~a jQuery plugin~~ **a standalone JavaScript module** that uses
