@@ -30,7 +30,7 @@
   "devDependencies": {
     "jscs": "^1.6.2",
     "jshint": "^2.5.6",
-    "postcss": "^2.2.5"
+    "tape": "^3.0.0"
   },
   "scripts": {
     "lint": "jscs **/*.js && jshint . --exclude-path .gitignore",
