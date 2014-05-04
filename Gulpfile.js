@@ -30,6 +30,7 @@ gulp.task("watch", ["dist"], function() {
   gulp.watch("./styles/**/*.css", ["stylesheets"])
   gulp.watch("./scripts/**/*.js", ["scripts"])
   gulp.watch("./tasks/**/*.js", ["scripts:linting"])
+  gulp.watch("./tests/**/*.js", ["scripts:linting"])
 
   // gulp.watch("./dist/**/*").on("change", server.livereload)
 })
