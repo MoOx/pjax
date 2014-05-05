@@ -5,6 +5,7 @@
   "main": "src/pjax.js",
   "scripts": {
     "test": "testling",
+    "test--html": "testling --html > tests/scripts/index.html",
     "coverage": "browserify -t coverify tests/**/*.js | testling | coverify"
   },
   "repository": {
