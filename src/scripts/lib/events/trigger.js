@@ -10,7 +10,17 @@ module.exports = function(els, events) {
     event.eventName = e
 
     forEachEls(els, function(el) {
+      var domFix = false
+      if (!el.parentNode) {
+        // THANKS YOU IE (9/10//11 concerned)
+        // dispatchEvent doesn't work if element is not in the dom
+        domFix = true
+        document.body.appendChild(el)
+      }
       el.dispatchEvent(event)
+      if (domFix) {
+        el.parentNode.removeChild(el)
+      }
     })
   })
 }
