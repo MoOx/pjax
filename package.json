@@ -38,6 +38,7 @@
   "scripts": {
     "lint": "jscs **/*.js && jshint . --exclude-path .gitignore",
     "test": "npm run lint && testling",
+    "test--html": "testling --html > tests/scripts/index.html",
     "coverage": "browserify -t coverify tests/**/*.js | testling | coverify"
   },
   "testling": {
