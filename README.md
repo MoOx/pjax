@@ -17,7 +17,8 @@ Especially for user that have low bandwidth connection._
 
 ## No tests or Demo ?
 
-There is still some work to make this repo sexy with tests & simple demo.
+~~There is still some work to make this repo sexy with tests & simple demo.~~  
+Actually there is a [WIP branch where I'm adding lot of tests](https://github.com/MoOx/pjax/tree/testling)
 
 For now [you can see this running on my website](http://moox.io), with sexy CSS animations when switching pages.
 
