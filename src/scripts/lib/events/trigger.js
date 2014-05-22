@@ -1,6 +1,6 @@
 var forEachEls = require("../foreach-els")
 
-module.exports = function(els, events) {
+module.exports = function(els, events, opts) {
   events = (typeof events === "string" ? events.split(" ") : events)
 
   events.forEach(function(e) {
@@ -8,6 +8,11 @@ module.exports = function(els, events) {
     event = document.createEvent("HTMLEvents")
     event.initEvent(e, true, true)
     event.eventName = e
+    if (opts) {
+      Object.keys(opts).forEach(function(key) {
+        event[key] = opts[key]
+      })
+    }
 
     forEachEls(els, function(el) {
       var domFix = false
