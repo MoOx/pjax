@@ -29,7 +29,7 @@ tape("test forEachEls on an array", function(t) {
   t.end()
 })
 
-tape("test forEachEls on an NodeList", function(t) {
+tape("test forEachEls on a NodeList", function(t) {
   div.innerHTML = "div tag"
   span.innerHTML = "span tag"
 
