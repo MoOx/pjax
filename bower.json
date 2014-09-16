@@ -1,6 +1,6 @@
 {
   "name": "pjax",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Easily enable fast Ajax navigation on any website (using pushState +  xhr)",
   "main": "src/pjax.js",
   "homepage": "https://github.com/MoOx/pjax",
