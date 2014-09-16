@@ -343,7 +343,7 @@
     }
 
   , loadContent: function(html, options) {
-      var tmpEl = document.implementation.createHTMLDocument()
+      var tmpEl = document.implementation.createHTMLDocument("")
 
         // parse HTML attributes to copy them
         // since we are forced to use documentElement.innerHTML (outerHTML can't be used for <html>)
