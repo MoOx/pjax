@@ -388,6 +388,10 @@ Value (in px) to scrollTo when a page is switched.
 Enable verbose mode & doesn't use fallback when there is an error.
 Useful to debug page layout differences.
 
+##### `currentUrlFullReload` (Boolean, default to false)
+
+When set to true, clicking on a link that point the current url trigger a full page reload.
+
 #### Extend Pjax
 
 Pjax prototype & utilities methods can be used & changed so you can patch or hack

@@ -27,7 +27,7 @@
       this.options.switches = this.options.switches || {}
       this.options.switchesOptions = this.options.switchesOptions || {}
       this.options.history = this.options.history || true
-      this.options.clickReload = this.options.clickReload || false
+      this.options.currentUrlFullReload = this.options.currentUrlFullReload || false
       this.options.analytics = this.options.analytics || function(options) {
         // options.backward or options.foward can be true or undefined
         // by default, we do track back/foward hit
@@ -272,9 +272,7 @@
 
         event.preventDefault()
 
-        // If options.clickReload is true, when a user click twice on a link,
-        // try to reload the page. Otherwise, do nothing.
-        if (this.options.clickReload) {
+        if (this.options.currentUrlFullReload) {
           if (el.href === window.location.href) {
             window.location.reload()
             return -6
