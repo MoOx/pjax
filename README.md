@@ -1,4 +1,5 @@
-# Pjax
+# Pjax [![Build Status](http://img.shields.io/travis/MoOx/pjax.svg)](https://travis-ci.org/MoOx/pjax)
+
 
 [![browser support](https://ci.testling.com/MoOx/pjax.png)](https://ci.testling.com/MoOx/pjax)
 
