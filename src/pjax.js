@@ -348,7 +348,7 @@
         , htmlRegex = /<html[^>]+>/gi
         , htmlAttribsRegex = /\s?[a-z:]+(?:\=(?:\'|\")[^\'\">]+(?:\'|\"))*/gi
         , matches = html.match(htmlRegex)
-        if (matches.length) {
+        if (matches && matches.length) {
           matches = matches[0].match(htmlAttribsRegex)
           if (matches.length) {
             matches.shift()
