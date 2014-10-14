@@ -7,8 +7,8 @@ var trigger = require("../../lib/events/trigger")
 var el = document.createElement("div")
 var el2 = document.createElement("span")
 var els = [el, el2]
-var eventType2 = "resize"
-var eventsType = "click resize"
+// var eventType2 = "resize"
+// var eventsType = "click resize"
 var classCb = function() {
   this.className += "on"
 }

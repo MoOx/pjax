@@ -3,7 +3,7 @@ var tape = require("tape")
 var request = require("../../lib/request.js")
 
 tape("test xhr request", function(t) {
-  var xhr = request("https://api.github.com/", function(result) {
+  request("https://api.github.com/", function(result) {
     try {
       result = JSON.parse(result)
     }

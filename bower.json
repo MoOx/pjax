@@ -18,8 +18,6 @@
   ],
   "license": "MIT",
   "moduleType": [
-    "amd",
-    "globals",
     "node"
   ],
   "ignore": [

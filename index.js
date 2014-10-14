@@ -1,4 +1,10 @@
+/* global _gaq: true, ga: true */
+
 var newUid = require("./lib/uniqueid.js")
+
+var on = require("./lib/events/on.js")
+// var off = require("./lib/events/on.js")
+var trigger = require("./lib/events/trigger.js")
 
 var Pjax = function(options) {
     this.firstrun = true
@@ -44,7 +50,7 @@ var Pjax = function(options) {
 
     this.parseDOM(document)
 
-    Pjax.on(window, "popstate", function(st) {
+    on(window, "popstate", function(st) {
       if (st.state) {
         var opt = Pjax.clone(this.options)
         opt.url = st.state.url
@@ -63,7 +69,6 @@ var Pjax = function(options) {
         this.loadUrl(st.state.url, opt)
       }
     }.bind(this))
-
   }
 
 Pjax.prototype = {
@@ -97,7 +102,7 @@ Pjax.prototype = {
   },
 
   onSwitch: function() {
-    Pjax.trigger(window, "resize scroll")
+    trigger(window, "resize scroll")
   },
 
   loadContent: function(html, options) {
@@ -131,24 +136,24 @@ Pjax.prototype = {
     }
 
     // try {
-      this.switchSelectors(this.options.selectors, tmpEl, document, options)
+    this.switchSelectors(this.options.selectors, tmpEl, document, options)
 
-      // FF bug: Won’t autofocus fields that are inserted via JS.
-      // This behavior is incorrect. So if theres no current focus, autofocus
-      // the last field.
-      //
-      // http://www.w3.org/html/wg/drafts/html/master/forms.html
-      var autofocusEl = Array.prototype.slice.call(document.querySelectorAll("[autofocus]")).pop()
-      if (autofocusEl && document.activeElement !== autofocusEl) {
-        autofocusEl.focus();
-      }
+    // FF bug: Won’t autofocus fields that are inserted via JS.
+    // This behavior is incorrect. So if theres no current focus, autofocus
+    // the last field.
+    //
+    // http://www.w3.org/html/wg/drafts/html/master/forms.html
+    var autofocusEl = Array.prototype.slice.call(document.querySelectorAll("[autofocus]")).pop()
+    if (autofocusEl && document.activeElement !== autofocusEl) {
+      autofocusEl.focus();
+    }
 
-      // execute scripts when DOM have been completely updated
-      this.options.selectors.forEach(function(selector) {
-        Pjax.forEachEls(document.querySelectorAll(selector), function(el) {
-          Pjax.executeScripts(el)
-        })
+    // execute scripts when DOM have been completely updated
+    this.options.selectors.forEach(function(selector) {
+      Pjax.forEachEls(document.querySelectorAll(selector), function(el) {
+        Pjax.executeScripts(el)
       })
+    })
     // }
     // catch(e) {
     //   if (this.options.debug) {
@@ -163,14 +168,13 @@ Pjax.prototype = {
   loadUrl: function(href, options) {
     this.log("load href", href, options)
 
-    Pjax.trigger(document, "pjax:send", options);
+    trigger(document, "pjax:send", options);
 
     // Do the request
     this.doRequest(href, function(html) {
-
       // Fail if unable to load HTML via AJAX
       if (html === false) {
-        Pjax.trigger(document,"pjax:complete pjax:error", options)
+        trigger(document,"pjax:complete pjax:error", options)
 
         return
       }
@@ -195,25 +199,24 @@ Pjax.prototype = {
       }
 
       if (options.history) {
-
         if (this.firstrun) {
           this.lastUid = this.maxUid = newUid()
           this.firstrun = false
           window.history.replaceState({
-              url: window.location.href,
-              title: document.title,
-              uid: this.maxUid
-            },
-            document.title)
+            url: window.location.href,
+            title: document.title,
+            uid: this.maxUid
+          },
+          document.title)
         }
 
         // Update browser history
         this.lastUid = this.maxUid = newUid()
         window.history.pushState({
-            url: href,
-            title: options.title,
-            uid: this.maxUid
-          },
+          url: href,
+          title: options.title,
+          uid: this.maxUid
+        },
           options.title,
           href)
       }
@@ -223,7 +226,7 @@ Pjax.prototype = {
       }, this)
 
       // Fire Events
-      Pjax.trigger(document,"pjax:complete pjax:success", options)
+      trigger(document,"pjax:complete pjax:success", options)
 
       options.analytics()
 
