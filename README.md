@@ -15,6 +15,10 @@ Especially for user that have low bandwidth connection._
 
 **No more full page reload. No more lots of HTTP request.**
 
+# Note: current master is WIP.
+
+Checkout [v0.1.4](https://github.com/MoOx/pjax/tree/a17a6b90bebefd8f5209e6a6f7d8c5d59296232a) for latest "stable" (no tests so kind of funny to call that stable).
+
 ## Demo
 
 [You can see this running on my website](http://moox.io), with sexy CSS animations when switching pages.

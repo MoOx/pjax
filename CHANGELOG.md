@@ -1,3 +1,8 @@
+# unreleased
+
+- code exploded in commonjs style
+- lots of tests added
+
 # 0.1.4 - 2014-10-14
 
 - allow to load pages without any attributes on `<html>` element (fix [#6](https://github.com/MoOx/pjax/issues/6))
