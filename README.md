@@ -15,11 +15,6 @@ Especially for user that have low bandwidth connection._
 
 **No more full page reload. No more lots of HTTP request.**
 
-## No tests yet ?
-
-~~There is still some work to make this repo sexy with tests & simple demo.~~  
-Actually there is a [WIP branch where I'm adding lot of tests](https://github.com/MoOx/pjax/tree/testling)
-
 ## Demo
 
 [You can see this running on my website](http://moox.io), with sexy CSS animations when switching pages.
