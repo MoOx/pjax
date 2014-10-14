@@ -499,7 +499,8 @@
     }
 
   , sideBySide: function(oldEl, newEl, options, switchOptions) {
-      var elsToRemove = []
+      var forEach = Array.prototype.forEach
+        , elsToRemove = []
         , elsToAdd = []
         , fragToAppend = document.createDocumentFragment()
         // height transition are shitty on safari
@@ -548,6 +549,8 @@
       // oldEl.parentNode.removeChild(newEl)
       // oldEl.style.height = oldEl.getBoundingClientRect().height + "px"
 
+      switchOptions = switchOptions || {}
+
       forEach.call(oldEl.childNodes, function(el) {
         elsToRemove.push(el)
         if (el.classList && !el.classList.contains("js-Pjax-remove")) {
@@ -560,7 +563,9 @@
           if (switchOptions.callbacks && switchOptions.callbacks.removeElement) {
             switchOptions.callbacks.removeElement(el)
           }
-          el.className += " " + switchOptions.classNames.remove + " " + (options.backward ? switchOptions.classNames.backward  : switchOptions.classNames.forward)
+          if (switchOptions.classNames) {
+            el.className += " " + switchOptions.classNames.remove + " " + (options.backward ? switchOptions.classNames.backward  : switchOptions.classNames.forward)
+          }
           animatedElsNumber++
           Pjax.on(el, animationEventNames, sexyAnimationEnd, true)
         }
@@ -568,7 +573,10 @@
 
       forEach.call(newEl.childNodes, function(el) {
         if (el.classList) {
-          var addClasses = " js-Pjax-add " + switchOptions.classNames.add + " " + (options.backward ? switchOptions.classNames.forward : switchOptions.classNames.backward)
+          var addClasses = ""
+          if (switchOptions.classNames) {
+            addClasses = " js-Pjax-add " + switchOptions.classNames.add + " " + (options.backward ? switchOptions.classNames.forward : switchOptions.classNames.backward)
+          }
           if (switchOptions.callbacks && switchOptions.callbacks.addElement) {
             switchOptions.callbacks.addElement(el)
           }

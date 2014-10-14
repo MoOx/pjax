@@ -253,7 +253,7 @@ new Pjax({
 , switches: {
     ".js-Pjax": Pjax.switches.sideBySide
   }
-, switchesClasses: {
+, switchesOptions: {
     ".js-Pjax": {
       classNames: {
         // class added on the element that will be removed
