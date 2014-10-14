@@ -28,12 +28,31 @@
     "src"
   ],
   "devDependencies": {
+    "browserify": "^3.46.0",
+    "coverify": "^1.0.6",
     "jscs": "^1.6.2",
     "jshint": "^2.5.6",
-    "postcss": "^2.2.5"
+    "tape": "^3.0.0",
+    "testling": "^1.6.1"
   },
   "scripts": {
     "lint": "jscs **/*.js && jshint . --exclude-path .gitignore",
-    "test": "npm run lint"
+    "test": "npm run lint && testling",
+    "test--html": "testling --html > tests/scripts/index.html",
+    "coverage": "browserify -t coverify tests/**/*.js | testling | coverify"
+  },
+  "testling": {
+    "files": "tests/**/*.js",
+    "browsers": [
+      "ie/10..latest",
+      "firefox/4.0", "firefox/latest", "firefox/nightly",
+      "chrome/10", "chrome/latest", "chrome/canary",
+      "opera/12..latest",
+      "opera/next",
+      "safari/5.1..latest",
+      "ipad/6.0..latest",
+      "iphone/6.0..latest",
+      "android-browser/4.2..latest"
+    ]
   }
 }
