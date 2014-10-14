@@ -49,41 +49,6 @@
     , "<"
     , "<="
   ]
-  , "disallowLeftStickedOperators": [
-      "?"
-    , "+"
-    , "-"
-    , "/"
-    , "*"
-    , "="
-    , "=="
-    , "==="
-    , "!="
-    , "!=="
-    , ">"
-    , ">="
-    , "<"
-    , "<="
-  ]
-  , "requireRightStickedOperators": [
-      "!"
-  ]
-  , "disallowRightStickedOperators": [
-      "?"
-    , "+"
-    , "/"
-    , "*"
-    , ":"
-    , "="
-    , "=="
-    , "==="
-    , "!="
-    , "!=="
-    , ">"
-    , ">="
-    , "<"
-    , "<="
-  ]
   , "disallowSpaceAfterPrefixUnaryOperators": [
       "++"
     , "--"

@@ -2,14 +2,6 @@
   "name": "pjax",
   "version": "0.1.3",
   "description": "Easily enable fast Ajax navigation on any website (using pushState +  xhr)",
-  "main": "src/pjax.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/MoOx/pjax.git"
-  },
   "keywords": [
     "pjax",
     "push",
@@ -19,18 +11,29 @@
     "transition",
     "animation"
   ],
-  "author": "MoOx <m@moox.io>",
-  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MoOx/pjax.git"
+  },
+  "homepage": "https://github.com/MoOx/pjax",
   "bugs": {
     "url": "https://github.com/MoOx/pjax/issues"
   },
-  "homepage": "https://github.com/MoOx/pjax",
+  "author": "Maxime Thirouin",
+  "license": "MIT",
+  "main": "src/pjax.js",
+  "files": [
+    "CHANGELOG.md",
+    "LICENSE",
+    "src"
+  ],
   "devDependencies": {
-    "jshint-stylish": "^0.1.5",
-    "gulp-jscs": "^0.3.2",
-    "gulp-plumber": "^0.5.6",
-    "gulp": "^3.5.6",
-    "gulp-jshint": "^1.5.1",
-    "buildbranch": "0.0.1"
+    "jscs": "^1.6.2",
+    "jshint": "^2.5.6",
+    "postcss": "^2.2.5"
+  },
+  "scripts": {
+    "lint": "jscs **/*.js && jshint . --exclude-path .gitignore",
+    "test": "npm run lint"
   }
 }

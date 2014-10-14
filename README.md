@@ -543,23 +543,15 @@ wrapper on each page (to avoid differences of DOM between pages)
 
 ---
 
-## [Changelog](CHANGELOG.md)
-
 ## Contributing
 
-Please read the file nobody reads (make me lie) [CONTRIBUTING.md](CONTRIBUTING.md)
+Work on a branch, install dev-dependencies, respect coding style & run tests before submitting a bug fix or a feature.
 
-### tl;dr;
+    $ git clone https://github.com/MoOx/pjax.git
+    $ git checkout -b patch-1
+    $ npm install
+    $ npm test
 
-Fork, clone, then
+## [Changelog](CHANGELOG.md)
 
-```shell
-$ npm i -g gulp
-$ npm i
-$ gulp
-```
-
-Now you can work on the file, then make a commit and a push something when gulp doesn't show any error.
-Thanks.
-
-## [License](LICENSE-MIT)
+## [License](LICENSE)

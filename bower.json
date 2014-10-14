@@ -2,16 +2,6 @@
   "name": "pjax",
   "version": "0.1.3",
   "description": "Easily enable fast Ajax navigation on any website (using pushState +  xhr)",
-  "main": "src/pjax.js",
-  "homepage": "https://github.com/MoOx/pjax",
-  "authors": [
-    "Maxime Thirouin <m@moox.io>"
-  ],
-  "moduleType": [
-    "amd",
-    "globals",
-    "node"
-  ],
   "keywords": [
     "pjax",
     "push",
@@ -21,11 +11,20 @@
     "transition",
     "animation"
   ],
+  "main": "src/pjax.js",
+  "homepage": "https://github.com/MoOx/pjax",
+  "authors": [
+    "Maxime Thirouin"
+  ],
   "license": "MIT",
+  "moduleType": [
+    "amd",
+    "globals",
+    "node"
+  ],
   "ignore": [
     "**/.*",
     "node_modules",
-    "bower_components",
     "test",
     "tests"
   ]
