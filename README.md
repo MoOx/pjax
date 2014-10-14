@@ -401,14 +401,6 @@ Pjax behavior, as you wish.
 
 Here is a summary of functions:
 
-- `Pjax.isSupported` (`function()`): return wheter or not the browser handle pushState correctly
-- `Pjax.on` (`function(els, events, listener, useCapture)`): addEventListener, that handles NodeList & supports space separated event name
-- `Pjax.off` (`function(els, events, listener, useCapture)`): removeEventListener, that handles NodeList & supports space separated event name
-- `Pjax.trigger` (`function(els, events)`): fireEvent, that handles NodeList & supports space separated event name
-- `Pjax.clone` (`function(obj)`): clone object
-- `Pjax.executeScripts` (`function(el)`): execute scripts that are inside an element (script src or inline scripts through `Pjax.evalScript`)
-- `Pjax.evalScript` (`function(el)`): execute inline script. Don't execute a script if it contains `document.write`.
-
 - `Pjax.prototype.log` (`function()`): console.log function that is enable/disabled by `debug` option
 - `Pjax.prototype.getElements` (`function(el)`): retrieve elements to attach Pjax behavior
 - `Pjax.prototype.parseDOM` (`function(el)`): parse DOM to attach behavior using `Pjax.prototype.getElements` & `Pjax.prototype.attachLink`
