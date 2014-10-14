@@ -1,6 +1,6 @@
 var tape = require("tape")
 
-var forEachEls = require("../../../src/scripts/lib/foreach-selectors.js")
+var forEachEls = require("../../lib/foreach-selectors.js")
 
 var cb = function(el) {
   el.className = "modified"

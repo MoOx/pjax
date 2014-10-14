@@ -1,8 +1,8 @@
 var tape = require("tape")
 
-var on = require("../../../src/scripts/lib/events/on")
-var off = require("../../../src/scripts/lib/events/off")
-var trigger = require("../../../src/scripts/lib/events/trigger")
+var on = require("../../lib/events/on")
+var off = require("../../lib/events/off")
+var trigger = require("../../lib/events/trigger")
 
 var el = document.createElement("div")
 var el2 = document.createElement("span")

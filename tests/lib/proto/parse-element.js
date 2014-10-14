@@ -1,6 +1,6 @@
 var tape = require("tape")
 
-var parseElement = require("../../../../src/scripts/lib/proto/parse-element")
+var parseElement = require("../../../lib/proto/parse-element")
 var protoMock = {attachLink: function() { return true}}
 tape("test parse element prototype method", function(t) {
 

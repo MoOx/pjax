@@ -1,6 +1,6 @@
 var tape = require("tape")
 
-var executeScripts = require("../../../src/scripts/lib/execute-scripts")
+var executeScripts = require("../../lib/execute-scripts")
 
 tape("test executeScripts method", function(t) {
   document.body.className = ""

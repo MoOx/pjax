@@ -1,6 +1,6 @@
 var tape = require("tape")
 
-var clone = require("../../../src/scripts/lib/clone")
+var clone = require("../../lib/clone")
 
 tape("test clone method", function(t) {
   var obj = {one: 1, two: 2}

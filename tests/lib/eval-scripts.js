@@ -1,6 +1,6 @@
 var tape = require("tape")
 
-var evalScript = require("../../../src/scripts/lib/eval-script")
+var evalScript = require("../../lib/eval-script")
 
 tape("test evalScript method", function(t) {
   document.body.className = ""

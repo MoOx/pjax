@@ -1,8 +1,8 @@
 var tape = require("tape")
 
-var on = require("../../../../src/scripts/lib/events/on")
-var trigger = require("../../../../src/scripts/lib/events/trigger")
-var attachLink = require("../../../../src/scripts/lib/proto/attach-link")
+var on = require("../../../lib/events/on")
+var trigger = require("../../../lib/events/trigger")
+var attachLink = require("../../../lib/proto/attach-link")
 
 var a = document.createElement("a")
 var attr = "data-pjax-click-state"

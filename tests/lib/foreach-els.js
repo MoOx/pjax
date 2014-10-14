@@ -1,6 +1,6 @@
 var tape = require("tape")
 
-var forEachEls = require("../../../src/scripts/lib/foreach-els.js")
+var forEachEls = require("../../lib/foreach-els.js")
 
 var div = document.createElement("div")
 var span = document.createElement("span")
