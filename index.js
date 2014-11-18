@@ -26,7 +26,7 @@ var Pjax = function(options) {
         ga("send", "pageview", {page: options.url, title: options.title})
       }
     }
-    this.options.scrollTo = this.options.scrollTo || 0
+    this.options.scrollTo = (typeof this.options.scrollTo === 'undefined') ? 0 : this.options.scrollTo;
     this.options.debug = this.options.debug || false
 
     this.maxUid = this.lastUid = newUid()
