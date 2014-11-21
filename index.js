@@ -1,4 +1,3 @@
-/* global _gaq: true, ga: true */
 
 var newUid = require("./lib/uniqueid.js")
 

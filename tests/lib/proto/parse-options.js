@@ -1,6 +1,6 @@
 var tape = require("tape")
 
-var parseOptions = require("../../../lib/proto/parse-options")
+var parseOptions = require("../../../lib/proto/parse-options.js")
 tape("test parse initalization options function", function(t) {
   // via http://stackoverflow.com/questions/1173549/how-to-determine-if-an-object-is-an-object-literal-in-javascript
   function isObjLiteral(_obj) {
@@ -21,46 +21,52 @@ tape("test parse initalization options function", function(t) {
   }
   function enumerableKeys(_obj) {
     var c = 0;
-    for(var n in _obj){ c++; }
-    return cl
+    for(var n in _obj){ n = n; c++; }
+    return c;
   }
-  
-  var body_1 = {};
-  var options_1 = {};
-  parseOptions.apply(body_1,options_1);
+  t.test("- default options", function(t){
+    var body_1 = {};
+    var options_1 = {};
+    parseOptions.apply(body_1,[options_1]);
 
-  t.deepEqual(body_1.options.elements,"a[href], form[action]");
-  t.deepEqual(body_1.options.selectors.length,2);
-  t.deepEqual(body_1.options.selectors[0],"title");
-  t.deepEqual(body_1.options.selectors[0],".js-Pjax");
-  
-  t.deepEqual(isObjLiteral(body_1.options.switches),true);
-  t.deepEqual(enumerableKeys(body_1.options.switches),0);
+    t.deepEqual(body_1.options.elements,"a[href], form[action]");
+    t.deepEqual(body_1.options.selectors.length,2,"selectors length");
+    t.deepEqual(body_1.options.selectors[0],"title");
+    t.deepEqual(body_1.options.selectors[1],".js-Pjax");
+    
+    t.deepEqual(isObjLiteral(body_1.options.switches),true);
+    t.deepEqual(enumerableKeys(body_1.options.switches),2);//head and body
 
-  t.deepEqual(isObjLiteral(body_1.options.switchesOptions),true);
-  t.deepEqual(enumerableKeys(body_1.options.switchesOptions),0);
+    t.deepEqual(isObjLiteral(body_1.options.switchesOptions),true);
+    t.deepEqual(enumerableKeys(body_1.options.switchesOptions),0);
 
-  t.deepEqual(body_1.options.history,true);
+    t.deepEqual(body_1.options.history,true);
 
-  //TODO analytics is a little weird right now
-  t.deepEqual(typeof body_1.options.analytics,"function");
+    //TODO analytics is a little weird right now
+    t.deepEqual(typeof body_1.options.analytics,"function");
 
-  t.deepEqual(body_1.options.scrollTo,0);
-  t.deepEqual(body_1.options.debug,false);
+    t.deepEqual(body_1.options.scrollTo,0);
+    t.deepEqual(body_1.options.debug,false);
+    t.end();
+  });
 
   //verify analytics always ends up as a function even when passed not a function
-  var body_2 = {};
-  var options_2 = {analytics:"some string"};
-  parseOptions.apply(body_2,options_2);
+  t.test("- analytics is a function", function(t){
+    var body_2 = {};
+    var options_2 = {analytics:"some string"};
+    parseOptions.apply(body_2,[options_2]);
 
-  t.deepEqual(typeof body_2.options.analytics,"function");
-
+    t.deepEqual(typeof body_2.options.analytics,"function");
+    t.end();
+  });
   //verify that the value false for scrollTo is not squashed
-  var body_3 = {};
-  var options_3 = {scrollTo:false};
-  parseOptions.apply(body_3,options_3);
+  t.test("- scrollTo remains false", function(t){
+    var body_3 = {};
+    var options_3 = {scrollTo:false};
+    parseOptions.apply(body_3,[options_3]);
 
-  t.deepEqual( body_2.options.scrollTo,false);
-
+    t.deepEqual( body_3.options.scrollTo,false);
+    t.end();
+  });
   t.end()
 })
