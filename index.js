@@ -9,7 +9,7 @@ var Pjax = function(options) {
     this.firstrun = true
 
     var parseOptions = require("./lib/proto/parse-options.js");
-    parseOptions.apply(this,options)
+    parseOptions.apply(this,[options])
     this.log("Pjax options", this.options)
 
     this.maxUid = this.lastUid = newUid()
