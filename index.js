@@ -51,7 +51,7 @@ Pjax.prototype = {
   },
 
   switchSelectors: function(selectors, fromEl, toEl, options) {
-    return require("./lib/switch-selectors.js")(this.options.switches, this.options.switchesOptions, selectors, fromEl, toEl, options)
+    return require("./lib/switches-selectors.js")(this.options.switches, this.options.switchesOptions, selectors, fromEl, toEl, options)
   },
 
   // too much problem with the code below
@@ -209,6 +209,9 @@ Pjax.prototype = {
   }
 }
 
+Pjax.isSupported = require("./lib/is-supported.js");
+
+//arguably could do `if( require("./lib/is-supported.js")()) {` but that might be a little to simple
 if (Pjax.isSupported()) {
   module.exports = Pjax
 }
