@@ -44,6 +44,8 @@ Pjax.prototype = {
 
   parseDOM: require("./lib/proto/parse-dom.js"),
 
+  refresh: require("./lib/proto/refresh.js"),
+
   attachLink: require("./lib/proto/attach-link.js"),
 
   forEachSelectors: function(cb, context, DOMcontext) {
