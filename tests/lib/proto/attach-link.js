@@ -13,8 +13,8 @@ tape("test attach link prototype method", function(t) {
 
   attachLink.call({
     options: {},
-    refresh: function() {
-      t.equal(a.getAttribute(attr), "refresh", "triggering exact same url refresh the page")
+    reload: function() {
+      t.equal(a.getAttribute(attr), "reload", "triggering exact same url reload the page")
     },
     loadUrl: function() {
       t.equal(a.getAttribute(attr), "load", "triggering a internal link actually load the page")
@@ -48,7 +48,7 @@ tape("test attach link prototype method", function(t) {
 
   a.href = internalUri
   trigger(a, "click")
-  // see refresh defined above
+  // see reload defined above
 
   a.href = window.location.protocol + "//" + window.location.host + "/internal"
   trigger(a, "click")
