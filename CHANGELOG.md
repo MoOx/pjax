@@ -1,6 +1,10 @@
 # unreleased
 
-- 
+-
+
+# 0.2.1 - 2015-02-04
+
+- Fixed: it's better when a release have actual files.
 
 # 0.2.0 - 2015-02-04
 

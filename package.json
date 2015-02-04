@@ -1,6 +1,6 @@
 {
   "name": "pjax",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Easily enable fast Ajax navigation on any website (using pushState +  xhr)",
   "keywords": [
     "pjax",
@@ -25,7 +25,8 @@
   "files": [
     "CHANGELOG.md",
     "LICENSE",
-    "src"
+    "index.js",
+    "lib"
   ],
   "devDependencies": {
     "browserify": "^3.46.0",
