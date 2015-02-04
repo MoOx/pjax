@@ -1,5 +1,9 @@
 # unreleased
 
+- 
+
+# 0.2.0 - 2015-02-04
+
 - Fixed: prevent scrollTo from being converted from false to 0 ([#33](https://github.com/MoOx/pjax/pull/33))
 - Changed: code exploded in commonjs style
 - Added: lots of tests
