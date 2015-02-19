@@ -38,9 +38,10 @@
   },
   "scripts": {
     "lint": "jscs **/*.js && jshint . --exclude-path .gitignore",
-    "test": "npm run lint && testling",
+    "test": "npm run lint && npm run standalone && testling",
     "test--html": "testling --html > tests/scripts/index.html",
-    "coverage": "browserify -t coverify tests/**/*.js | testling | coverify"
+    "coverage": "browserify -t coverify tests/**/*.js | testling | coverify",
+    "standalone": "browserify index.js --standalone Pjax > pjax.js"
   },
   "testling": {
     "files": "tests/**/*.js",
