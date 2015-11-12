@@ -537,6 +537,12 @@ wrapper on each page (to avoid differences of DOM between pages)
 
 ---
 
+## Examples
+
+Clone this repository and run `npm run example`, then open `http://localhost:3000/example` in your browser.
+
+---
+
 ## Contributing
 
 Work on a branch, install dev-dependencies, respect coding style & run tests before submitting a bug fix or a feature.
