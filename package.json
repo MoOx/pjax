@@ -41,7 +41,8 @@
     "test": "npm run lint && npm run standalone && testling",
     "test--html": "testling --html > tests/scripts/index.html",
     "coverage": "browserify -t coverify tests/**/*.js | testling | coverify",
-    "standalone": "browserify index.js --standalone Pjax > pjax.js"
+    "standalone": "browserify index.js --standalone Pjax > pjax.js",
+    "prepublish": "npm run standalone"
   },
   "testling": {
     "files": "tests/**/*.js",
