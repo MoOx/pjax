@@ -33,6 +33,7 @@
     "coverify": "^1.0.6",
     "jscs": "^1.6.2",
     "jshint": "^2.5.6",
+    "serve": "1.4.0",
     "tape": "^3.0.0",
     "testling": "^1.6.1"
   },
@@ -41,14 +42,20 @@
     "test": "npm run lint && npm run standalone && testling",
     "test--html": "testling --html > tests/scripts/index.html",
     "coverage": "browserify -t coverify tests/**/*.js | testling | coverify",
-    "standalone": "browserify index.js --standalone Pjax > pjax.js"
+    "standalone": "browserify index.js --standalone Pjax > pjax.js",
+    "example": "echo '\n==> Open http://localhost:3000/example in your browser.'; serve .",
+    "prepublish": "npm run standalone"
   },
   "testling": {
     "files": "tests/**/*.js",
     "browsers": [
       "ie/10..latest",
-      "firefox/4.0", "firefox/latest", "firefox/nightly",
-      "chrome/10", "chrome/latest", "chrome/canary",
+      "firefox/4.0",
+      "firefox/latest",
+      "firefox/nightly",
+      "chrome/10",
+      "chrome/latest",
+      "chrome/canary",
       "opera/12..latest",
       "opera/next",
       "safari/5.1..latest",
