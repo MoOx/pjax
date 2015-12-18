@@ -44,7 +44,7 @@ want (including html metas, title, navigation state).
 ### Under the hood
 
 - It listen to every clicks on links _you want_ (by default all of them),
-- When a internal link hitted, Pjax grabs HTML from your server via ajax,
+- When an internal link is clicked, Pjax grabs HTML from your server via ajax,
 - Pjax render pages DOM tree (without loading any resources - images, css, js...)
 - It check if all defined parts can be replaced:
     - if page doesn't suit requirement, classic navigation used,
