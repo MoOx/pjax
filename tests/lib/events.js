@@ -90,3 +90,21 @@ tape("test events on/off/trigger for multiple elements, multiple events", functi
 
   t.end()
 })
+
+tape("test events on top level elements", function(t) {
+  var el = document;
+
+  el.className = ""
+  on(el, "click", classCb)
+  trigger(el, "click")
+  t.equal(el.className, "on", "attached callback has been fired properly on document")
+
+  el = window;
+
+  el.className = ""
+  on(el, "click", classCb)
+  trigger(el, "click")
+  t.equal(el.className, "on", "attached callback has been fired properly on window")
+
+  t.end()
+})
