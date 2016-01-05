@@ -56,3 +56,22 @@ tape("test attach link prototype method", function(t) {
 
   t.end()
 })
+
+tape("test attach link preventDefaulted events", function(t) {
+  var callbacked = false
+  var a = document.createElement("a")
+
+  attachLink.call({
+    options: {},
+    loadUrl: function() {
+      callbacked = true
+    }
+  }, a)
+
+  a.href = "#"
+  on(a, "click", preventDefault)
+  trigger(a, "click")
+  t.equal(callbacked, false, "events that are preventDefaulted should not fire callback")
+
+  t.end()
+})
