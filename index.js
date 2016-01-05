@@ -49,11 +49,11 @@ Pjax.prototype = {
   attachLink: require("./lib/proto/attach-link.js"),
 
   forEachSelectors: function(cb, context, DOMcontext) {
-    return require("./lib/foreach-selectors.js")(this.options.selectors, cb, context, DOMcontext)
+    return require("./lib/foreach-selectors.js").bind(this)(this.options.selectors, cb, context, DOMcontext)
   },
 
   switchSelectors: function(selectors, fromEl, toEl, options) {
-    return require("./lib/switches-selectors.js")(this.options.switches, this.options.switchesOptions, selectors, fromEl, toEl, options)
+    return require("./lib/switches-selectors.js").bind(this)(this.options.switches, this.options.switchesOptions, selectors, fromEl, toEl, options)
   },
 
   // too much problem with the code below
