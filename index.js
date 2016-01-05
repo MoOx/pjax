@@ -1,3 +1,6 @@
+var clone = require('./lib/clone.js')
+var executeScripts = require('./lib/execute-scripts.js')
+
 var forEachEls = require("./lib/foreach-els.js")
 
 var newUid = require("./lib/uniqueid.js")
@@ -20,7 +23,7 @@ var Pjax = function(options) {
 
     on(window, "popstate", function(st) {
       if (st.state) {
-        var opt = Pjax.clone(this.options)
+        var opt = clone(this.options)
         opt.url = st.state.url
         opt.title = st.state.title
         opt.history = false
@@ -121,7 +124,7 @@ Pjax.prototype = {
     // execute scripts when DOM have been completely updated
     this.options.selectors.forEach(function(selector) {
       forEachEls(document.querySelectorAll(selector), function(el) {
-        Pjax.executeScripts(el)
+        executeScripts(el)
       })
     })
     // }
