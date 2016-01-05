@@ -1,9 +1,14 @@
+var clone = require('./lib/clone.js')
+var executeScripts = require('./lib/execute-scripts.js')
+
+var forEachEls = require("./lib/foreach-els.js")
 
 var newUid = require("./lib/uniqueid.js")
 
 var on = require("./lib/events/on.js")
 // var off = require("./lib/events/on.js")
 var trigger = require("./lib/events/trigger.js")
+
 
 var Pjax = function(options) {
     this.firstrun = true
@@ -18,7 +23,7 @@ var Pjax = function(options) {
 
     on(window, "popstate", function(st) {
       if (st.state) {
-        var opt = Pjax.clone(this.options)
+        var opt = clone(this.options)
         opt.url = st.state.url
         opt.title = st.state.title
         opt.history = false
@@ -49,11 +54,11 @@ Pjax.prototype = {
   attachLink: require("./lib/proto/attach-link.js"),
 
   forEachSelectors: function(cb, context, DOMcontext) {
-    return require("./lib/foreach-selectors.js")(this.options.selectors, cb, context, DOMcontext)
+    return require("./lib/foreach-selectors.js").bind(this)(this.options.selectors, cb, context, DOMcontext)
   },
 
   switchSelectors: function(selectors, fromEl, toEl, options) {
-    return require("./lib/switches-selectors.js")(this.options.switches, this.options.switchesOptions, selectors, fromEl, toEl, options)
+    return require("./lib/switches-selectors.js").bind(this)(this.options.switches, this.options.switchesOptions, selectors, fromEl, toEl, options)
   },
 
   // too much problem with the code below
@@ -118,8 +123,8 @@ Pjax.prototype = {
 
     // execute scripts when DOM have been completely updated
     this.options.selectors.forEach(function(selector) {
-      Pjax.forEachEls(document.querySelectorAll(selector), function(el) {
-        Pjax.executeScripts(el)
+      forEachEls(document.querySelectorAll(selector), function(el) {
+        executeScripts(el)
       })
     })
     // }
