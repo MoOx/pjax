@@ -1,6 +1,13 @@
-# unreleased
-
--
+- Fixed: HierarchyRequestError error
+([#49](https://github.com/MoOx/pjax/pull/49))
+- Fixed: ``TypeError: Pjax.forEachEls is not a function``
+([#52](https://github.com/MoOx/pjax/pull/52))
+- Fixed: ``TypeError: Pjax.executeScripts is not a function``
+([#52](https://github.com/MoOx/pjax/pull/52))
+- Fixed: ``TypeError: Pjax.clone is not a function``
+([#52](https://github.com/MoOx/pjax/pull/52))
+- Added: Ignore events with prevented defaults
+([#50](https://github.com/MoOx/pjax/pull/50))
 
 # 0.2.1 - 2015-02-04
 
