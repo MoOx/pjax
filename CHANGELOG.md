@@ -1,3 +1,5 @@
+- Fixed: added back standalone version in `./pjax.js`
+([#57](https://github.com/MoOx/pjax/issues/57)
 - Fixed: error when using pjax with google analytics (``options`` was undefined)
 ([#59](https://github.com/MoOx/pjax/pull/59))
 - Fixed: HierarchyRequestError error

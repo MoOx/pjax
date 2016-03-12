@@ -23,10 +23,9 @@
   "license": "MIT",
   "main": "src/pjax.js",
   "files": [
-    "CHANGELOG.md",
-    "LICENSE",
     "index.js",
-    "lib"
+    "lib",
+    "pjax.js"
   ],
   "devDependencies": {
     "browserify": "^3.46.0",

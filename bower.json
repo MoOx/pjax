@@ -11,7 +11,7 @@
     "transition",
     "animation"
   ],
-  "main": "src/pjax.js",
+  "main": "pjax.js",
   "homepage": "https://github.com/MoOx/pjax",
   "authors": [
     "Maxime Thirouin"
