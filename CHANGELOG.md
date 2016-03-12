@@ -1,3 +1,5 @@
+# 0.2.2 - 2016-03-12
+
 - Fixed: added back standalone version in `./pjax.js`
 ([#57](https://github.com/MoOx/pjax/issues/57)
 - Fixed: error when using pjax with google analytics (``options`` was undefined)

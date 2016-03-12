@@ -1,6 +1,6 @@
 {
   "name": "pjax",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Easily enable fast Ajax navigation on any website (using pushState +  xhr)",
   "keywords": [
     "pjax",
@@ -31,10 +31,11 @@
   },
   "scripts": {
     "lint": "jscs **/*.js && jshint . --exclude-path .gitignore",
-    "test": "npm run lint && npm run standalone && testling",
+    "standalone": "browserify index.js --standalone Pjax > pjax.js",
+    "tests": "testling",
+    "test": "npm run lint && npm run standalone && npm run tests",
     "test--html": "testling --html > tests/scripts/index.html",
     "coverage": "browserify -t coverify tests/**/*.js | testling | coverify",
-    "standalone": "browserify index.js --standalone Pjax > pjax.js",
     "example": "echo '\n==> Open http://localhost:3000/example in your browser.'; serve .",
     "prepublish": "npm run standalone"
   },
