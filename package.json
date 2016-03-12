@@ -11,14 +11,7 @@
     "transition",
     "animation"
   ],
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/MoOx/pjax.git"
-  },
-  "homepage": "https://github.com/MoOx/pjax",
-  "bugs": {
-    "url": "https://github.com/MoOx/pjax/issues"
-  },
+  "repository": "https://github.com/MoOx/pjax.git",
   "author": "Maxime Thirouin",
   "license": "MIT",
   "main": "src/pjax.js",
