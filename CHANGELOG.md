@@ -1,3 +1,5 @@
+- Fixed: error when using pjax with google analytics (``options`` was undefined)
+([#59](https://github.com/MoOx/pjax/pull/59))
 - Fixed: HierarchyRequestError error
 ([#49](https://github.com/MoOx/pjax/pull/49))
 - Fixed: ``TypeError: Pjax.forEachEls is not a function``
