@@ -16,9 +16,6 @@ Especially for user that have low bandwidth connection._
 
 **No more full page reload. No more lots of HTTP request.**
 
-# Note: current master is WIP.
-
-Checkout [v0.1.4](https://github.com/MoOx/pjax/tree/a17a6b90bebefd8f5209e6a6f7d8c5d59296232a) for latest "stable" (no tests so kind of funny to call that stable).
 
 ## Demo
 
@@ -394,25 +391,6 @@ Useful to debug page layout differences.
 
 When set to true, clicking on a link that point the current url trigger a full page reload.
 
-#### Extend Pjax
-
-Pjax prototype & utilities methods can be used & changed so you can patch or hack
-Pjax behavior, as you wish.
-
-Here is a summary of functions:
-
-- `Pjax.prototype.log` (`function()`): console.log function that is enable/disabled by `debug` option
-- `Pjax.prototype.getElements` (`function(el)`): retrieve elements to attach Pjax behavior
-- `Pjax.prototype.parseDOM` (`function(el)`): parse DOM to attach behavior using `Pjax.prototype.getElements` & `Pjax.prototype.attachLink`
-- `Pjax.prototype.attachLink` (`function(el)`): attach Pjax behavior to a link
-- `Pjax.prototype.forEachSelectors` (`function(cb, context, DOMcontext)`): call a function for each selectors defined
-- `Pjax.prototype.switchSelectors` (`function(selectors, fromEl, toEl, options)`): loop on selectors to switch elements
-- `Pjax.prototype.latestChance` (`function(href)`): when everything is fucked up, it's our only hope (just call `window.location = href`)
-- `Pjax.prototype.onSwitch` (`function()`): callback triggered when elements are switched, for now it's just trigger a window resize event (lots of lib are listening to this event to draw stuff)
-- `Pjax.prototype.loadContent` (`function(html, options)`): switch elements for each selectors
-- `Pjax.prototype.doRequest` (`function(location, callback)`): make the ajax request to grab page from the server
-- `Pjax.prototype.loadUrl` (`function(href, options)`): do the ajax request, handle html results & eventually handle browser history, analytics & scroll.
-
 ### Events
 
 Pjax fires a number of events regardless of how its invoked.
@@ -543,15 +521,13 @@ Clone this repository and run `npm run example`, then open `http://localhost:300
 
 ---
 
-## Contributing
+## CONTRIBUTING
 
-Work on a branch, install dev-dependencies, respect coding style & run tests before submitting a bug fix or a feature.
+* ⇄ Pull requests and ★ Stars are always welcome.
+* For bugs and feature requests, please create an issue.
+* Pull requests must be accompanied by passing automated tests (`$ npm test`).
 
-    $ git clone https://github.com/MoOx/pjax.git
-    $ git checkout -b patch-1
-    $ npm install
-    $ npm test
+## [CHANGELOG](CHANGELOG.md)
 
-## [Changelog](CHANGELOG.md)
+## [LICENSE](LICENSE)
 
-## [License](LICENSE)
