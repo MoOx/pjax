@@ -39,7 +39,7 @@
     "coverage": "browserify -t coverify tests/**/*.js | testling | coverify",
     "example": "echo '\n==> Open http://localhost:3000/example in your browser.'; serve .",
     "prepublish": "npm run standalone",
-    "release": "npm test && npmpub --skip-test"
+    "release": "npmpub --skip-test --dry && npm test && npmpub --skip-cleanup"
   },
   "testling": {
     "files": "tests/**/*.js",
