@@ -51,6 +51,8 @@ Pjax.prototype = {
 
   refresh: require("./lib/proto/refresh.js"),
 
+  reload: require("./lib/reload.js"),
+
   attachLink: require("./lib/proto/attach-link.js"),
 
   forEachSelectors: function(cb, context, DOMcontext) {

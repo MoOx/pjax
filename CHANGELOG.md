@@ -1,3 +1,7 @@
+- Fixed: ``currentUrlFullReload`` option now works
+- Fixed: ``this.reload`` is now a Function
+  ([#65](https://github.com/MoOx/pjax/issues/65))
+
 # 0.2.2 - 2016-03-12
 
 - Fixed: added back standalone version in `./pjax.js`
