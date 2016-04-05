@@ -273,6 +273,7 @@ new Pjax({
         }
       }
     }
+  }
 })
 ```
 _Note that remove class include `Animated--reverse` which is a simple way to not have
