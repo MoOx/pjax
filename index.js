@@ -94,7 +94,12 @@ Pjax.prototype = {
         matches.shift()
         matches.forEach(function(htmlAttrib) {
           var attr = htmlAttrib.trim().split("=")
-          tmpEl.documentElement.setAttribute(attr[0], attr[1].slice(1, -1))
+          if (attr.length === 1) {
+            tmpEl.documentElement.setAttribute(attr[0], true)
+          }
+          else {
+            tmpEl.documentElement.setAttribute(attr[0], attr[1].slice(1, -1))
+          }
         })
       }
     }
