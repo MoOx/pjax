@@ -382,6 +382,12 @@ It's called every time a page is switched, even for history buttons.
 
 Value (in px) to scrollTo when a page is switched.
 
+##### `cacheBust` (Boolean, default true)
+
+When set to true,
+append a timestamp query string segment to the requested URLs
+in order to skip browser cache.
+
 ##### `debug` (Boolean, default to false)
 
 Enable verbose mode & doesn't use fallback when there is an error.

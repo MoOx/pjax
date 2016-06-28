@@ -46,6 +46,7 @@ tape("test parse initalization options function", function(t) {
     t.deepEqual(typeof body_1.options.analytics,"function");
 
     t.deepEqual(body_1.options.scrollTo,0);
+    t.deepEqual(body_1.options.cacheBust,true);
     t.deepEqual(body_1.options.debug,false);
     t.end();
   });
