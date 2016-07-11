@@ -1,3 +1,13 @@
+# 0.2.4 - 2016-06-28
+
+- Fixed: ``refresh`` should now work (use `this.parseDOM` for refresh)
+  ([#67](https://github.com/MoOx/pjax/pull/67) - @compressed)
+- Fixed: Some attributes, such as `itemscope` have no corresponding value.
+  This change allows them to still be set.
+  ([#67](https://github.com/MoOx/pjax/pull/67) - @compressed)
+- Added: ``cacheBust`` option
+  ([#71](https://github.com/MoOx/pjax/pull/71) - @tremby)
+
 # 0.2.3 - 2016-03-24
 
 - Fixed: ``currentUrlFullReload`` option now works

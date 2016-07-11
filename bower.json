@@ -1,6 +1,6 @@
 {
   "name": "pjax",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "Easily enable fast Ajax navigation on any website (using pushState +  xhr)",
   "keywords": [
     "pjax",
