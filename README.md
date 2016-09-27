@@ -249,7 +249,7 @@ with or without [WOW.js](https://github.com/matthieua/WOW).
 new Pjax({
   selectors: ["title", ".js-Pjax"],
   switches: {
-    ".js-Pjax": Pjax.switches.sideBySide
+    ".js-Pjax": require("pjax/lib/switches.js").sideBySide
   },
   switchesOptions: {
     ".js-Pjax": {
