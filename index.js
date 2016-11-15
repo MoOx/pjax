@@ -77,6 +77,7 @@ Pjax.prototype = {
   },
 
   onSwitch: function() {
+    this.parseDOM(document)
     trigger(window, "resize scroll")
   },
 
