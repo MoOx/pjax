@@ -27,7 +27,7 @@ var Pjax = function(options) {
         opt.url = st.state.url
         opt.title = st.state.title
         opt.history = false
-
+        opt.requestOptions = {};
         if (st.state.uid < this.lastUid) {
           opt.backward = true
         }
@@ -54,6 +54,8 @@ Pjax.prototype = {
   reload: require("./lib/reload.js"),
 
   attachLink: require("./lib/proto/attach-link.js"),
+
+  attachForm: require("./lib/proto/attach-form.js"),
 
   forEachSelectors: function(cb, context, DOMcontext) {
     return require("./lib/foreach-selectors.js").bind(this)(this.options.selectors, cb, context, DOMcontext)
@@ -151,7 +153,7 @@ Pjax.prototype = {
     trigger(document, "pjax:send", options);
 
     // Do the request
-    this.doRequest(href, function(html) {
+    this.doRequest(href, options.requestOptions, function(html) {
       // Fail if unable to load HTML via AJAX
       if (html === false) {
         trigger(document,"pjax:complete pjax:error", options)
