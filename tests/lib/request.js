@@ -21,7 +21,7 @@ tape("test xhr request", function(t) {
         cacheBust: true,
       },
     });
-    var r = requestCacheBust("https://api.github.com/", function(result) {
+    var r = requestCacheBust("https://api.github.com/", {}, function(result) {
       t.equal(r.responseURL.indexOf("?"), 23, "XHR URL is cache-busted when configured to be")
       try {
         result = JSON.parse(result)
@@ -39,7 +39,7 @@ tape("test xhr request", function(t) {
         cacheBust: false,
       },
     });
-    var r = requestNoCacheBust("https://api.github.com/", function() {
+    var r = requestNoCacheBust("https://api.github.com/", {}, function() {
       t.equal(r.responseURL, "https://api.github.com/", "XHR URL is left untouched")
       t.end()
     })
