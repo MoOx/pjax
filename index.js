@@ -9,6 +9,8 @@ var on = require("./lib/events/on.js")
 // var off = require("./lib/events/on.js")
 var trigger = require("./lib/events/trigger.js")
 
+var defaultSwitches = require("./lib/switches")
+
 
 var Pjax = function(options) {
     this.firstrun = true
@@ -41,6 +43,8 @@ var Pjax = function(options) {
       }
     }.bind(this))
   }
+
+Pjax.switches = defaultSwitches
 
 Pjax.prototype = {
   log: require("./lib/proto/log.js"),
