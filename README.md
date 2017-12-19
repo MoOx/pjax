@@ -19,6 +19,22 @@ Especially for user that have low bandwidth connection._
 
 [You can see this running on my website](http://moox.io), with sexy CSS animations when switching pages.
 
+## Installation
+
+You can install pjax from **npm**
+
+```shell
+$ npm install pjax
+```
+
+Pjax can obviously be downloaded directly.
+
+[https://unpkg.com/pjax/pjax.js](https://unpkg.com/pjax/pjax.js)
+
+## No dependencies
+
+_There is nothing you need. No jQuery or something._
+
 ## How Pjax works
 
 Pjax loads page using ajax & updates the browser's current url using pushState without reloading your page's layout or any resources (js, css), giving a fast page load.
@@ -96,26 +112,6 @@ _Magic! For real!_ **There is completely no need to do anything on server side!*
 - Works for CommonJS environment (browserify), AMD (RequireJS) or even globally,
 - Allow page transition with CSS animations,
 - Can be easily hacked since every method is public (so overridable)
-
-## Installation
-
-You can install pjax from **npm**
-
-```shell
-$ npm install pjax
-```
-
-Or using **bower**
-
-```shell
-$ bower install pjax
-```
-
-Pjax can obviously be downloaded directly.
-
-## No dependencies
-
-_There is nothing you need. No jQuery or something._
 
 ## Compatibility
 
