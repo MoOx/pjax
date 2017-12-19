@@ -34,6 +34,7 @@
   "scripts": {
     "lint": "jscs **/*.js && jshint . --exclude-path .gitignore",
     "standalone": "browserify index.js --standalone Pjax > pjax.js",
+    "build-debug": "browserify index.js --debug --standalone Pjax > pjax.js",
     "tests": "testling",
     "test": "npm run lint && npm run standalone && npm run tests",
     "test--html": "testling --html > tests/scripts/index.html",

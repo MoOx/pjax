@@ -15,7 +15,6 @@ Especially for user that have low bandwidth connection._
 
 **No more full page reload. No more lots of HTTP request.**
 
-
 ## Demo
 
 [You can see this running on my website](http://moox.io), with sexy CSS animations when switching pages.
@@ -249,7 +248,7 @@ with or without [WOW.js](https://github.com/matthieua/WOW).
 new Pjax({
   selectors: ["title", ".js-Pjax"],
   switches: {
-    ".js-Pjax": require("pjax/lib/switches.js").sideBySide
+    ".js-Pjax": Pjax.switches.sideBySide
   },
   switchesOptions: {
     ".js-Pjax": {

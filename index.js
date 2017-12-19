@@ -9,6 +9,8 @@ var on = require("./lib/events/on.js")
 // var off = require("./lib/events/on.js")
 var trigger = require("./lib/events/trigger.js")
 
+var defaultSwitches = require("./lib/switches")
+
 
 var Pjax = function(options) {
     this.firstrun = true
@@ -27,7 +29,7 @@ var Pjax = function(options) {
         opt.url = st.state.url
         opt.title = st.state.title
         opt.history = false
-
+        opt.requestOptions = {};
         if (st.state.uid < this.lastUid) {
           opt.backward = true
         }
@@ -42,6 +44,8 @@ var Pjax = function(options) {
     }.bind(this))
   }
 
+Pjax.switches = defaultSwitches
+
 Pjax.prototype = {
   log: require("./lib/proto/log.js"),
 
@@ -54,6 +58,8 @@ Pjax.prototype = {
   reload: require("./lib/reload.js"),
 
   attachLink: require("./lib/proto/attach-link.js"),
+
+  attachForm: require("./lib/proto/attach-form.js"),
 
   forEachSelectors: function(cb, context, DOMcontext) {
     return require("./lib/foreach-selectors.js").bind(this)(this.options.selectors, cb, context, DOMcontext)
@@ -81,7 +87,7 @@ Pjax.prototype = {
   },
 
   loadContent: function(html, options) {
-    var tmpEl = document.implementation.createHTMLDocument()
+    var tmpEl = document.implementation.createHTMLDocument("pjax")
 
     // parse HTML attributes to copy them
     // since we are forced to use documentElement.innerHTML (outerHTML can't be used for <html>)
@@ -151,7 +157,7 @@ Pjax.prototype = {
     trigger(document, "pjax:send", options);
 
     // Do the request
-    this.doRequest(href, function(html) {
+    this.doRequest(href, options.requestOptions, function(html) {
       // Fail if unable to load HTML via AJAX
       if (html === false) {
         trigger(document,"pjax:complete pjax:error", options)
