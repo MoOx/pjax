@@ -158,6 +158,7 @@ Pjax.prototype = {
     trigger(document, "pjax:send", options);
 
     // Do the request
+    options.requestOptions.timeout = this.options.timeout
     this.doRequest(href, options.requestOptions, function(html) {
       // Fail if unable to load HTML via AJAX
       if (html === false) {
