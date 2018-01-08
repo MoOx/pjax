@@ -102,7 +102,8 @@ tape("test events on top level elements", function(t) {
   el = window;
 
   el.className = ""
-  on(el, "click", classCb)
+  // With jsdom, the default this is global, not window, so we need to explicitly bind to window.
+  on(el, "click", classCb.bind(window))
   trigger(el, "click")
   t.equal(el.className, "on", "attached callback has been fired properly on window")
 
