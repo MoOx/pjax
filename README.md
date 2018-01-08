@@ -392,6 +392,10 @@ Useful to debug page layout differences.
 
 When set to true, clicking on a link that point the current url trigger a full page reload.
 
+##### `timeout` (Integer, default to 0)
+
+The timeout in milliseconds for the XHR requests. Set to 0 to disable the timeout.
+
 ### Events
 
 Pjax fires a number of events regardless of how its invoked.
