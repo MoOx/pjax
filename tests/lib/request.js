@@ -15,14 +15,16 @@ if (!('responseURL' in XMLHttpRequest.prototype)) {
 }
 
 tape("test xhr request", function(t) {
+  var url = "https://httpbin.org/get"
+
   t.test("- request is made, gets a result, and is cache-busted", function(t) {
     var requestCacheBust = request.bind({
       options: {
         cacheBust: true,
       },
     });
-    var r = requestCacheBust("https://api.github.com/", {}, function(result) {
-      t.equal(r.responseURL.indexOf("?"), 23, "XHR URL is cache-busted when configured to be")
+    var r = requestCacheBust(url, {}, function(result) {
+      t.equal(r.responseURL.indexOf("?"), url.length, "XHR URL is cache-busted when configured to be")
       try {
         result = JSON.parse(result)
       }
@@ -39,8 +41,8 @@ tape("test xhr request", function(t) {
         cacheBust: false,
       },
     });
-    var r = requestNoCacheBust("https://api.github.com/", {}, function() {
-      t.equal(r.responseURL, "https://api.github.com/", "XHR URL is left untouched")
+    var r = requestNoCacheBust(url, {}, function() {
+      t.equal(r.responseURL, url, "XHR URL is left untouched")
       t.end()
     })
   })
