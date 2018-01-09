@@ -22,7 +22,7 @@
   ],
   "devDependencies": {
     "browserify": "^3.46.0",
-    "jscs": "^1.6.2",
+    "jscs": "^3.0.7",
     "jsdom": "^11.5.1",
     "jsdom-global": "^3.0.2",
     "jshint": "^2.5.6",
