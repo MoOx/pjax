@@ -1,6 +1,6 @@
 # Pjax
 
-[![Build Status](http://img.shields.io/travis/MoOx/pjax.svg)](https://travis-ci.org/MoOx/pjax) [@todo fix CI](https://github.com/MoOx/pjax/issues/63).
+[![Build Status](http://img.shields.io/travis/MoOx/pjax.svg)](https://travis-ci.org/MoOx/pjax).
 
 > Easily enable fast Ajax navigation on any website (using pushState +  xhr)
 
@@ -522,7 +522,7 @@ wrapper on each page (to avoid differences of DOM between pages)
 
 ## Examples
 
-Clone this repository and run `npm run example`, then open `http://localhost:3000/example` in your browser.
+Clone this repository and run `npm run example`, which will open the example app in your browser.
 
 ---
 
