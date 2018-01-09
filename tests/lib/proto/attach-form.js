@@ -46,12 +46,12 @@ tape("test attach form prototype method", function(t) {
   // see reload defined above
 
   form.action = window.location.protocol + "//" + window.location.host + "/internal"
-  form.method = 'POST'
+  form.method = "POST"
   trigger(form, "submit")
   // see post defined above
 
   form.action = window.location.protocol + "//" + window.location.host + "/internal"
-  form.method = 'GET'
+  form.method = "GET"
   trigger(form, "submit")
   // see post defined above
 
