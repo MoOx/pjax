@@ -43,7 +43,6 @@
     "coverage": "nyc -x \"tests/**\" npm run coverage-tests",
     "example": "serve -o -p 3000 ./example",
     "prepublish": "npm run standalone",
-    "#release": "testling does not work in a process launch by npm... :facepalm:",
-    "release": "echo \"npmpub --skip-test --dry && npm test && npmpub --skip-test --skip-cleanup\""
+    "release": "npmpub"
   }
 }
