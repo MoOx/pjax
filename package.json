@@ -35,7 +35,7 @@
     "tape": "^3.0.0"
   },
   "scripts": {
-    "lint": "jscs **/*.js && jshint . --exclude-path .gitignore",
+    "lint": "jscs . && jshint . --exclude-path .gitignore",
     "standalone": "browserify index.js --standalone Pjax > pjax.js",
     "build-debug": "browserify index.js --debug --standalone Pjax > pjax.js",
     "tests": "tape -r ./tests/index.js ./tests/**/*.js",
