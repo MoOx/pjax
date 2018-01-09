@@ -6,9 +6,9 @@ var request = require("../../lib/request.js")
 // just for the purposes of this test
 // This polyfill is not complete; it won't show the updated location if a
 // redirection occurred, but it's fine for our purposes.
-if (!('responseURL' in XMLHttpRequest.prototype)) {
+if (!("responseURL" in XMLHttpRequest.prototype)) {
   var nativeOpen = XMLHttpRequest.prototype.open
-  XMLHttpRequest.prototype.open = function (method, url) {
+  XMLHttpRequest.prototype.open = function(method, url) {
     this.responseURL = url
     return nativeOpen.apply(this, arguments)
   }

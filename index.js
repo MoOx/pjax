@@ -1,5 +1,5 @@
-var clone = require('./lib/clone.js')
-var executeScripts = require('./lib/execute-scripts.js')
+var clone = require("./lib/clone.js")
+var executeScripts = require("./lib/execute-scripts.js")
 
 var forEachEls = require("./lib/foreach-els.js")
 
@@ -71,12 +71,12 @@ Pjax.prototype = {
 
   // too much problem with the code below
   // + it’s too dangerous
-//   switchFallback: function(fromEl, toEl) {
-//     this.switchSelectors(["head", "body"], fromEl, toEl)
-//     // execute script when DOM is like it should be
-//     Pjax.executeScripts(document.querySelector("head"))
-//     Pjax.executeScripts(document.querySelector("body"))
-//   }
+  //   switchFallback: function(fromEl, toEl) {
+  //     this.switchSelectors(["head", "body"], fromEl, toEl)
+  //     // execute script when DOM is like it should be
+  //     Pjax.executeScripts(document.querySelector("head"))
+  //     Pjax.executeScripts(document.querySelector("body"))
+  //   }
 
   latestChance: function(href) {
     window.location = href
@@ -233,7 +233,7 @@ Pjax.prototype = {
 
 Pjax.isSupported = require("./lib/is-supported.js");
 
-//arguably could do `if( require("./lib/is-supported.js")()) {` but that might be a little to simple
+// arguably could do `if( require("./lib/is-supported.js")()) {` but that might be a little to simple
 if (Pjax.isSupported()) {
   module.exports = Pjax
 }

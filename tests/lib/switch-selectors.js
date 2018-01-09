@@ -8,7 +8,7 @@ tape("test switchesSelectors", function(t) {
   // should really be passed in instead so I'll leave it here as a TODO:
   var pjax = {
     onSwitch: function() {
-      console.log('Switched')
+      console.log("Switched")
     }
   }
 
@@ -29,13 +29,13 @@ tape("test switchesSelectors", function(t) {
   switchesSelectors.bind(pjax)(
     {}, // switches
     {}, // switchesOptions
-    ['p'], //selectors,
+    ["p"], // selectors,
     tmpEl, // fromEl
     document, // toEl,
     {} // options
   )
 
-  t.equals(container.innerHTML, '<p>New Text</p><span>No Change</span>', 'Elements correctly switched')
+  t.equals(container.innerHTML, "<p>New Text</p><span>No Change</span>", "Elements correctly switched")
 
   t.end()
 })
