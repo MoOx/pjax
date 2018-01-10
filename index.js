@@ -159,7 +159,7 @@ Pjax.prototype = {
 
     // Do the request
     options.requestOptions.timeout = this.options.timeout
-    this.doRequest(href, options.requestOptions, function(html) {
+    this.doRequest(href, options.requestOptions, function(html, request) {
       // Fail if unable to load HTML via AJAX
       if (html === false) {
         trigger(document,"pjax:complete pjax:error", options)
@@ -169,6 +169,18 @@ Pjax.prototype = {
 
       // Clear out any focused controls before inserting new page contents.
       document.activeElement.blur()
+
+      if (request.responseURL) {
+        if (href !== request.responseURL) {
+          href = request.responseURL
+        }
+      }
+      else if (request.getResponseHeader("X-PJAX-URL")) {
+        href = request.getResponseHeader("X-PJAX-URL")
+      }
+      else if (request.getResponseHeader("X-XHR-Redirected-To")) {
+        href = request.getResponseHeader("X-XHR-Redirected-To")
+      }
 
       try {
         this.loadContent(html, options)
