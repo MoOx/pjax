@@ -14,7 +14,7 @@
   "repository": "https://github.com/MoOx/pjax.git",
   "author": "Maxime Thirouin",
   "license": "MIT",
-  "main": "src/pjax.js",
+  "main": "index.js",
   "files": [
     "index.js",
     "lib",
