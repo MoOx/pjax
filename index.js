@@ -229,13 +229,15 @@ Pjax.prototype = {
 
       // Update browser history
       this.lastUid = this.maxUid = newUid()
+
+      var state = this.state
       window.history.pushState({
-          url: this.state.href,
-          title: this.state.options.title,
+          url: state.href,
+          title: state.options.title,
           uid: this.maxUid
         },
-        this.state.options.title,
-        this.state.href)
+        state.options.title,
+        state.href)
     }
 
     this.forEachSelectors(function(el) {
