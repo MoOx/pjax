@@ -14,6 +14,11 @@ var defaultSwitches = require("./lib/switches")
 
 var Pjax = function(options) {
     this.firstrun = true
+    this.state = {
+      numPendingSwitches: 0,
+      href: null,
+      options: null
+    }
 
     var parseOptions = require("./lib/proto/parse-options.js");
     parseOptions.apply(this,[options])
@@ -83,8 +88,12 @@ Pjax.prototype = {
   },
 
   onSwitch: function() {
-    this.parseDOM(document)
-    trigger(window, "resize scroll")
+    this.state.numPendingSwitches--
+
+    // debounce calls, so we only run this once after all switches are finished.
+    if (this.state.numPendingSwitches === 0) {
+      this.afterAllSwitches()
+    }
   },
 
   loadContent: function(html, options) {
@@ -125,22 +134,6 @@ Pjax.prototype = {
     // try {
     this.switchSelectors(this.options.selectors, tmpEl, document, options)
 
-    // FF bug: Won’t autofocus fields that are inserted via JS.
-    // This behavior is incorrect. So if theres no current focus, autofocus
-    // the last field.
-    //
-    // http://www.w3.org/html/wg/drafts/html/master/forms.html
-    var autofocusEl = Array.prototype.slice.call(document.querySelectorAll("[autofocus]")).pop()
-    if (autofocusEl && document.activeElement !== autofocusEl) {
-      autofocusEl.focus();
-    }
-
-    // execute scripts when DOM have been completely updated
-    this.options.selectors.forEach(function(selector) {
-      forEachEls(document.querySelectorAll(selector), function(el) {
-        executeScripts(el)
-      })
-    })
     // }
     // catch(e) {
     //   if (this.options.debug) {
@@ -181,6 +174,8 @@ Pjax.prototype = {
       else if (request.getResponseHeader("X-XHR-Redirected-To")) {
         href = request.getResponseHeader("X-XHR-Redirected-To")
       }
+      this.state.href = href
+      this.state.options = clone(options)
 
       try {
         this.loadContent(html, options)
@@ -197,49 +192,79 @@ Pjax.prototype = {
           throw e
         }
       }
+    }.bind(this))
+  },
 
-      if (options.history) {
-        if (this.firstrun) {
-          this.lastUid = this.maxUid = newUid()
-          this.firstrun = false
-          window.history.replaceState({
+  afterAllSwitches: function() {
+    trigger(window, "resize scroll")
+
+    // FF bug: Won’t autofocus fields that are inserted via JS.
+    // This behavior is incorrect. So if theres no current focus, autofocus
+    // the last field.
+    //
+    // http://www.w3.org/html/wg/drafts/html/master/forms.html
+    var autofocusEl = Array.prototype.slice.call(document.querySelectorAll("[autofocus]")).pop()
+    if (autofocusEl && document.activeElement !== autofocusEl) {
+      autofocusEl.focus();
+    }
+
+    // execute scripts when DOM have been completely updated
+    this.options.selectors.forEach(function(selector) {
+      forEachEls(document.querySelectorAll(selector), function(el) {
+        executeScripts(el)
+      })
+    })
+
+    var state = this.state
+
+    if (state.options.history) {
+      if (this.firstrun) {
+        this.lastUid = this.maxUid = newUid()
+        this.firstrun = false
+        window.history.replaceState({
             url: window.location.href,
             title: document.title,
             uid: this.maxUid
           },
           document.title)
-        }
+      }
 
-        // Update browser history
-        this.lastUid = this.maxUid = newUid()
-        window.history.pushState({
-          url: href,
-          title: options.title,
+      // Update browser history
+      this.lastUid = this.maxUid = newUid()
+
+      window.history.pushState({
+          url: state.href,
+          title: state.options.title,
           uid: this.maxUid
         },
-          options.title,
-          href)
+        state.options.title,
+        state.href)
+    }
+
+    this.forEachSelectors(function(el) {
+      this.parseDOM(el)
+    }, this)
+
+    // Fire Events
+    trigger(document,"pjax:complete pjax:success", state.options)
+
+    state.options.analytics()
+
+    // Scroll page to top on new page load
+    if (state.options.scrollTo !== false) {
+      if (state.options.scrollTo.length > 1) {
+        window.scrollTo(state.options.scrollTo[0], state.options.scrollTo[1])
       }
-
-      this.forEachSelectors(function(el) {
-        this.parseDOM(el)
-      }, this)
-
-      // Fire Events
-      trigger(document,"pjax:complete pjax:success", options)
-
-      options.analytics()
-
-      // Scroll page to top on new page load
-      if (options.scrollTo !== false) {
-        if (options.scrollTo.length > 1) {
-          window.scrollTo(options.scrollTo[0], options.scrollTo[1])
-        }
-        else {
-          window.scrollTo(0, options.scrollTo)
-        }
+      else {
+        window.scrollTo(0, state.options.scrollTo)
       }
-    }.bind(this))
+    }
+
+    this.state = {
+      numPendingSwitches: 0,
+      href: null,
+      options: null
+    }
   }
 }
 

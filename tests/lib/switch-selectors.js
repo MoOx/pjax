@@ -9,7 +9,8 @@ tape("test switchesSelectors", function(t) {
   var pjax = {
     onSwitch: function() {
       console.log("Switched")
-    }
+    },
+    state: {}
   }
 
   var tmpEl = document.implementation.createHTMLDocument()
