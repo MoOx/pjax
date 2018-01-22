@@ -306,7 +306,7 @@ Pjax.prototype = {
         }
       }
     }
-    else {
+    else if (state.options.scrollRestoration && state.options.scrollPos) {
       window.scrollTo(state.options.scrollPos[0], state.options.scrollPos[1])
     }
 

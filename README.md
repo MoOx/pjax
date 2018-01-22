@@ -377,6 +377,10 @@ It's called every time a page is switched, even for history buttons.
 
 Value (in px) to scrollTo when a page is switched.
 
+##### `scrollRestoration` (Boolean, default true)
+
+When set to true, attempt to restore the scroll position when navigating backwards or forwards.
+
 ##### `cacheBust` (Boolean, default true)
 
 When set to true,
