@@ -247,7 +247,7 @@ Pjax.prototype = {
             url: window.location.href,
             title: document.title,
             uid: this.maxUid,
-            scrollPos: 0
+            scrollPos: [0, 0]
           },
           document.title)
       }
@@ -259,7 +259,7 @@ Pjax.prototype = {
           url: state.href,
           title: state.options.title,
           uid: this.maxUid,
-          scrollPos: 0
+          scrollPos: [0, 0]
         },
         state.options.title,
         state.href)
