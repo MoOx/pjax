@@ -13,7 +13,6 @@ var defaultSwitches = require("./lib/switches")
 
 
 var Pjax = function(options) {
-    this.firstrun = true
     this.state = {
       numPendingSwitches: 0,
       href: null,
@@ -35,6 +34,7 @@ var Pjax = function(options) {
         opt.title = st.state.title
         opt.history = false
         opt.requestOptions = {};
+        opt.scrollPos = st.state.scrollPos
         if (st.state.uid < this.lastUid) {
           opt.backward = true
         }
@@ -160,6 +160,17 @@ Pjax.prototype = {
         return
       }
 
+      // push scroll position to history
+      var currentState = window.history.state || {}
+      window.history.replaceState({
+          url: currentState.url || window.location.href,
+          title: currentState.title || document.title,
+          uid: currentState.uid || newUid(),
+          scrollPos: [document.documentElement.scrollLeft || document.body.scrollLeft,
+            document.documentElement.scrollTop || document.body.scrollTop]
+        },
+        document.title, window.location)
+
       // Clear out any focused controls before inserting new page contents.
       document.activeElement.blur()
 
@@ -218,13 +229,13 @@ Pjax.prototype = {
     var state = this.state
 
     if (state.options.history) {
-      if (this.firstrun) {
+      if (!window.history.state) {
         this.lastUid = this.maxUid = newUid()
-        this.firstrun = false
         window.history.replaceState({
             url: window.location.href,
             title: document.title,
-            uid: this.maxUid
+            uid: this.maxUid,
+            scrollPos: 0
           },
           document.title)
       }
@@ -235,7 +246,8 @@ Pjax.prototype = {
       window.history.pushState({
           url: state.href,
           title: state.options.title,
-          uid: this.maxUid
+          uid: this.maxUid,
+          scrollPos: 0
         },
         state.options.title,
         state.href)
@@ -250,14 +262,19 @@ Pjax.prototype = {
 
     state.options.analytics()
 
-    // Scroll page to top on new page load
-    if (state.options.scrollTo !== false) {
-      if (state.options.scrollTo.length > 1) {
-        window.scrollTo(state.options.scrollTo[0], state.options.scrollTo[1])
+    if (state.options.history) {
+      // Scroll page to top on new page load
+      if (state.options.scrollTo !== false) {
+        if (state.options.scrollTo.length > 1) {
+          window.scrollTo(state.options.scrollTo[0], state.options.scrollTo[1])
+        }
+        else {
+          window.scrollTo(0, state.options.scrollTo)
+        }
       }
-      else {
-        window.scrollTo(0, state.options.scrollTo)
-      }
+    }
+    else {
+      window.scrollTo(state.options.scrollPos[0], state.options.scrollPos[1])
     }
 
     this.state = {
