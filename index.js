@@ -175,7 +175,7 @@ Pjax.prototype = {
         href = request.getResponseHeader("X-XHR-Redirected-To")
       }
       this.state.href = href
-      this.state.options = options
+      this.state.options = clone(options)
 
       try {
         this.loadContent(html, options)
@@ -215,7 +215,9 @@ Pjax.prototype = {
       })
     })
 
-    if (this.state.options.history) {
+    var state = this.state
+
+    if (state.options.history) {
       if (this.firstrun) {
         this.lastUid = this.maxUid = newUid()
         this.firstrun = false
@@ -230,7 +232,6 @@ Pjax.prototype = {
       // Update browser history
       this.lastUid = this.maxUid = newUid()
 
-      var state = this.state
       window.history.pushState({
           url: state.href,
           title: state.options.title,
@@ -245,17 +246,17 @@ Pjax.prototype = {
     }, this)
 
     // Fire Events
-    trigger(document,"pjax:complete pjax:success", this.state.options)
+    trigger(document,"pjax:complete pjax:success", state.options)
 
-    this.state.options.analytics()
+    state.options.analytics()
 
     // Scroll page to top on new page load
-    if (this.state.options.scrollTo !== false) {
-      if (this.state.options.scrollTo.length > 1) {
-        window.scrollTo(this.state.options.scrollTo[0], this.state.options.scrollTo[1])
+    if (state.options.scrollTo !== false) {
+      if (state.options.scrollTo.length > 1) {
+        window.scrollTo(state.options.scrollTo[0], state.options.scrollTo[1])
       }
       else {
-        window.scrollTo(0, this.state.options.scrollTo)
+        window.scrollTo(0, state.options.scrollTo)
       }
     }
 
