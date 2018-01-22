@@ -174,6 +174,7 @@ Pjax.prototype = {
       // Clear out any focused controls before inserting new page contents.
       document.activeElement.blur()
 
+      var oldHref = href
       if (request.responseURL) {
         if (href !== request.responseURL) {
           href = request.responseURL
@@ -185,6 +186,17 @@ Pjax.prototype = {
       else if (request.getResponseHeader("X-XHR-Redirected-To")) {
         href = request.getResponseHeader("X-XHR-Redirected-To")
       }
+
+      // Add back the hash if it was removed
+      var a = document.createElement("a")
+      a.href = oldHref
+      var oldHash = a.hash
+      a.href = href
+      if (oldHash && !a.hash) {
+        a.hash = oldHash
+        href = a.href
+      }
+
       this.state.href = href
       this.state.options = clone(options)
 
@@ -263,8 +275,29 @@ Pjax.prototype = {
     state.options.analytics()
 
     if (state.options.history) {
-      // Scroll page to top on new page load
-      if (state.options.scrollTo !== false) {
+      // First parse url and check for hash to override scroll
+      var a = document.createElement("a")
+      a.href = this.state.href
+      if (a.hash) {
+        var name = a.hash.slice(1)
+        name = decodeURIComponent(name)
+
+        var curtop = 0
+        var target = document.getElementById(name) || document.getElementsByName(name)[0]
+        if (target) {
+          // http://stackoverflow.com/questions/8111094/cross-browser-javascript-function-to-find-actual-position-of-an-element-in-page
+          if (target.offsetParent) {
+            do {
+              curtop += target.offsetTop
+
+              target = target.offsetParent
+            } while (target)
+          }
+        }
+        window.scrollTo(0, curtop);
+      }
+      else if (state.options.scrollTo !== false) {
+        // Scroll page to top on new page load
         if (state.options.scrollTo.length > 1) {
           window.scrollTo(state.options.scrollTo[0], state.options.scrollTo[1])
         }
