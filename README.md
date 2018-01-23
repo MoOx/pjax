@@ -21,15 +21,19 @@ Especially for user that have low bandwidth connection._
 
 ## Installation
 
-You can install pjax from **npm**
+- You can install pjax from **npm**:
+  ```shell
+  npm install pjax
+  ```
 
-```shell
-$ npm install pjax
-```
-
-Pjax can obviously be downloaded directly.
-
-[https://unpkg.com/pjax/pjax.js](https://unpkg.com/pjax/pjax.js)
+- You can also link directly to the [bundle](https://cdn.jsdelivr.net/npm/pjax/pjax.js):
+  ```html
+  <script src="https://cdn.jsdelivr.net/npm/pjax@VERSION/pjax.js"></script>
+  ```
+  Or the [minified bundle](https://cdn.jsdelivr.net/npm/pjax/pjax.min.js):
+  ```html
+  <script src="https://cdn.jsdelivr.net/npm/pjax@VERSION/pjax.min.js"></script>
+  ```
 
 ## No dependencies
 
