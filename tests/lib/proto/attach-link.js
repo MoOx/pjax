@@ -75,3 +75,21 @@ tape("test attach link preventDefaulted events", function(t) {
 
   t.end()
 })
+
+tape("test options are not modified by attachLink", function(t) {
+  var a = document.createElement("a")
+  var options = {foo: "bar"}
+  var loadUrl = () => {};
+
+  attachLink.call({options, loadUrl}, a)
+
+  var internalUri = window.location.protocol + "//" + window.location.host + window.location.pathname + window.location.search
+  a.href = internalUri
+
+  trigger(a, "click")
+
+  t.equal(1, Object.keys(options).length, "options object that is passed in should not be modified")
+  t.equal("bar", options.foo, "options object that is passed in should not be modified")
+
+  t.end();
+})
