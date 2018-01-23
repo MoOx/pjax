@@ -88,6 +88,8 @@ Pjax.prototype = {
   },
 
   onSwitch: function() {
+    trigger(window, "resize scroll")
+
     this.state.numPendingSwitches--
 
     // debounce calls, so we only run this once after all switches are finished.
@@ -219,8 +221,6 @@ Pjax.prototype = {
   },
 
   afterAllSwitches: function() {
-    trigger(window, "resize scroll")
-
     // FF bug: Won’t autofocus fields that are inserted via JS.
     // This behavior is incorrect. So if theres no current focus, autofocus
     // the last field.
