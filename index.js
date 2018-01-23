@@ -145,16 +145,21 @@ Pjax.prototype = {
     // }
   },
 
-  doRequest: require("./lib/request.js"),
+  abortRequest: require("./lib/abort-request.js"),
+
+  doRequest: require("./lib/send-request.js"),
 
   loadUrl: function(href, options) {
     this.log("load href", href, options)
+
+    // Abort any previous request
+    this.abortRequest(this.request)
 
     trigger(document, "pjax:send", options);
 
     // Do the request
     options.requestOptions.timeout = this.options.timeout
-    this.doRequest(href, options.requestOptions, function(html, request) {
+    this.request = this.doRequest(href, options.requestOptions, function(html, request) {
       // Fail if unable to load HTML via AJAX
       if (html === false) {
         trigger(document,"pjax:complete pjax:error", options)
