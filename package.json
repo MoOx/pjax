@@ -38,7 +38,7 @@
     "lint": "jscs . && jshint . --exclude-path .gitignore",
     "standalone": "browserify index.js --standalone Pjax > pjax.js",
     "build-debug": "browserify index.js --debug --standalone Pjax > pjax.js",
-    "tests": "tape -r ./tests/setup.js ./tests/**/*.js",
+    "tests": "tape -r ./tests/setup.js ./tests/lib/*.js ./tests/lib/proto/*.js",
     "test": "npm run lint && npm run tests | tap-spec",
     "coverage-tests": "npm run tests | tap-nyc",
     "coverage": "nyc -x \"tests/**\" npm run coverage-tests",
