@@ -5,6 +5,8 @@ var forEachEls = require("./lib/foreach-els.js")
 
 var newUid = require("./lib/uniqueid.js")
 
+var noop = require("./lib/util/noop")
+
 var on = require("./lib/events/on.js")
 // var off = require("./lib/events/on.js")
 var trigger = require("./lib/events/trigger.js")
@@ -331,10 +333,10 @@ if (Pjax.isSupported()) {
 }
 // if there isn’t required browser functions, returning stupid api
 else {
-  var stupidPjax = function() {}
+  var stupidPjax = noop
   for (var key in Pjax.prototype) {
     if (Pjax.prototype.hasOwnProperty(key) && typeof Pjax.prototype[key] === "function") {
-      stupidPjax[key] = stupidPjax
+      stupidPjax[key] = noop
     }
   }
 
