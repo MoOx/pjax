@@ -371,11 +371,13 @@ Enable pushState. Only disable if you are crazy.
 Internaly, this option is used when `popstate` is used (to not pushState again).
 You should forget that option.
 
-##### `analytics` (Function, default to a function that push `_gaq` `trackPageview` or send `ga` `pageview`
+##### `analytics` (Function|Boolean, default to a function that pushes `_gaq` `_trackPageview` or sends `ga` `pageview`
 
-Function that allow you to add behavior for analytics. By default it try to track
+Function that allows you to add behavior for analytics. By default it tries to track
 a pageview with Google Analytics.
 It's called every time a page is switched, even for history buttons.
+
+Set to `false` to disable this behavior.
 
 ##### `scrollTo` (Integer, default to 0)
 
@@ -543,4 +545,3 @@ Clone this repository and run `npm run example`, which will open the example app
 ## [CHANGELOG](CHANGELOG.md)
 
 ## [LICENSE](LICENSE)
-

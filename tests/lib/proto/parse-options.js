@@ -34,26 +34,20 @@ tape("test parse initalization options function", function(t) {
     var options1 = {};
     parseOptions.apply(body1, [options1]);
 
-    t.deepEqual(body1.options.elements, "a[href], form[action]");
-    t.deepEqual(body1.options.selectors.length, 2, "selectors length");
-    t.deepEqual(body1.options.selectors[0], "title");
-    t.deepEqual(body1.options.selectors[1], ".js-Pjax");
-
-    t.deepEqual(isObjLiteral(body1.options.switches), true);
-    t.deepEqual(enumerableKeys(body1.options.switches), 2);// head and body
-
-    t.deepEqual(isObjLiteral(body1.options.switchesOptions), true);
-    t.deepEqual(enumerableKeys(body1.options.switchesOptions), 0);
-
-    t.deepEqual(body1.options.history, true);
-
-    // TODO analytics is a little weird right now
-    t.deepEqual(typeof body1.options.analytics, "function");
-
-    t.deepEqual(body1.options.scrollTo, 0);
-    t.deepEqual(body1.options.cacheBust, true);
-    t.deepEqual(body1.options.debug, false);
-    t.deepEqual(body1.options.scrollRestoration, true)
+    t.equal(body1.options.elements, "a[href], form[action]");
+    t.equal(body1.options.selectors.length, 2, "selectors length");
+    t.equal(body1.options.selectors[0], "title");
+    t.equal(body1.options.selectors[1], ".js-Pjax");
+    t.equal(isObjLiteral(body1.options.switches), true);
+    t.equal(enumerableKeys(body1.options.switches), 2);// head and body
+    t.equal(isObjLiteral(body1.options.switchesOptions), true);
+    t.equal(enumerableKeys(body1.options.switchesOptions), 0);
+    t.equal(body1.options.history, true);
+    t.equal(typeof body1.options.analytics, "function");
+    t.equal(body1.options.scrollTo, 0);
+    t.equal(body1.options.scrollRestoration, true);
+    t.equal(body1.options.cacheBust, true);
+    t.equal(body1.options.debug, false);
     t.end();
   });
 
