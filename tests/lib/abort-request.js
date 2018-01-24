@@ -23,7 +23,9 @@ tape("test aborting xhr request", function(t) {
   })
 
   t.test("- pending request is aborted", function(t) {
-    var r = requestCacheBust("https://httpbin.org/delay/10", {}, function() {})
+    var r = requestCacheBust("https://httpbin.org/delay/10", {}, function() {
+      t.fail("xhr was not aborted")
+    })
     t.equal(r.readyState, 1, "xhr readyState is '1' (SENT)")
     abortRequest(r)
     t.equal(r.readyState, 0, "xhr readyState is '0' (ABORTED)")
