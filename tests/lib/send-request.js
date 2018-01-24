@@ -1,6 +1,6 @@
 var tape = require("tape")
 
-var request = require("../../lib/request.js")
+var sendRequest = require("../../lib/send-request.js")
 
 // Polyfill responseURL property into XMLHttpRequest if it doesn't exist,
 // just for the purposes of this test
@@ -18,7 +18,7 @@ tape("test xhr request", function(t) {
   var url = "https://httpbin.org/get"
 
   t.test("- request is made, gets a result, and is cache-busted", function(t) {
-    var requestCacheBust = request.bind({
+    var requestCacheBust = sendRequest.bind({
       options: {
         cacheBust: true,
       },
@@ -36,7 +36,7 @@ tape("test xhr request", function(t) {
     })
   })
   t.test("- request is not cache-busted when configured not to be", function(t) {
-    var requestNoCacheBust = request.bind({
+    var requestNoCacheBust = sendRequest.bind({
       options: {
         cacheBust: false,
       },

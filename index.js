@@ -5,6 +5,8 @@ var forEachEls = require("./lib/foreach-els.js")
 
 var newUid = require("./lib/uniqueid.js")
 
+var noop = require("./lib/util/noop")
+
 var on = require("./lib/events/on.js")
 // var off = require("./lib/events/on.js")
 var trigger = require("./lib/events/trigger.js")
@@ -145,16 +147,21 @@ Pjax.prototype = {
     // }
   },
 
-  doRequest: require("./lib/request.js"),
+  abortRequest: require("./lib/abort-request.js"),
+
+  doRequest: require("./lib/send-request.js"),
 
   loadUrl: function(href, options) {
     this.log("load href", href, options)
+
+    // Abort any previous request
+    this.abortRequest(this.request)
 
     trigger(document, "pjax:send", options);
 
     // Do the request
     options.requestOptions.timeout = this.options.timeout
-    this.doRequest(href, options.requestOptions, function(html, request) {
+    this.request = this.doRequest(href, options.requestOptions, function(html, request) {
       // Fail if unable to load HTML via AJAX
       if (html === false) {
         trigger(document,"pjax:complete pjax:error", options)
@@ -326,10 +333,10 @@ if (Pjax.isSupported()) {
 }
 // if there isn’t required browser functions, returning stupid api
 else {
-  var stupidPjax = function() {}
+  var stupidPjax = noop
   for (var key in Pjax.prototype) {
     if (Pjax.prototype.hasOwnProperty(key) && typeof Pjax.prototype[key] === "function") {
-      stupidPjax[key] = stupidPjax
+      stupidPjax[key] = noop
     }
   }
 
