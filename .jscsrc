@@ -1,7 +1,8 @@
 {
   "excludeFiles": [
     "node_modules/**",
-    "pjax.js"
+    "pjax.js",
+    "pjax.min.js"
   ],
   "fileExtensions": [
     ".js"
