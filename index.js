@@ -181,9 +181,6 @@ Pjax.prototype = {
         },
         document.title, window.location)
 
-      // Clear out any focused controls before inserting new page contents.
-      document.activeElement.blur()
-
       var oldHref = href
       if (request.responseURL) {
         if (href !== request.responseURL) {
