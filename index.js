@@ -279,7 +279,9 @@ Pjax.prototype = {
     // Fire Events
     trigger(document,"pjax:complete pjax:success", state.options)
 
-    state.options.analytics()
+    if (typeof state.options.analytics === "function") {
+      state.options.analytics()
+    }
 
     if (state.options.history) {
       // First parse url and check for hash to override scroll
