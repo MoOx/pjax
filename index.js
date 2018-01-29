@@ -25,6 +25,10 @@ var Pjax = function(options) {
     parseOptions.apply(this,[options])
     this.log("Pjax options", this.options)
 
+    if (this.options.scrollRestoration && "scrollRestoration" in history) {
+      history.scrollRestoration = "manual"
+    }
+
     this.maxUid = this.lastUid = newUid()
 
     this.parseDOM(document)
