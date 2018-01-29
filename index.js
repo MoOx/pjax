@@ -6,6 +6,7 @@ var forEachEls = require("./lib/foreach-els.js")
 var newUid = require("./lib/uniqueid.js")
 
 var noop = require("./lib/util/noop")
+var contains = require("./lib/util/contains.js")
 
 var on = require("./lib/events/on.js")
 // var off = require("./lib/events/on.js")
@@ -133,7 +134,7 @@ Pjax.prototype = {
 
     // Clear out any focused controls before inserting new page contents.
     // we clear focus on non form elements
-    if (document.activeElement && !document.activeElement.value) {
+    if (document.activeElement && contains(this.options.selectors, document.activeElement)) {
       try {
         document.activeElement.blur()
       } catch (e) { }
@@ -183,9 +184,6 @@ Pjax.prototype = {
             document.documentElement.scrollTop || document.body.scrollTop]
         },
         document.title, window.location)
-
-      // Clear out any focused controls before inserting new page contents.
-      document.activeElement.blur()
 
       var oldHref = href
       if (request.responseURL) {
