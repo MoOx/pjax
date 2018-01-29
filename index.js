@@ -133,7 +133,6 @@ Pjax.prototype = {
     this.log("load content", tmpEl.documentElement.attributes, tmpEl.documentElement.innerHTML.length)
 
     // Clear out any focused controls before inserting new page contents.
-    // we clear focus on non form elements
     if (document.activeElement && contains(this.options.selectors, document.activeElement)) {
       try {
         document.activeElement.blur()
