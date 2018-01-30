@@ -394,8 +394,7 @@ in order to skip browser cache.
 
 ##### `debug` (Boolean, default: `false`)
 
-Enables verbose mode & doesn't use fallback when there is an error.
-Useful to debug page layout differences.
+Enables verbose mode. Useful to debug page layout differences.
 
 ##### `currentUrlFullReload` (Boolean, default: `false`)
 
@@ -416,7 +415,7 @@ All events are fired from the _document_, not the link that was clicked.
 * `pjax:send` - Fired after the Pjax request begins.
 * `pjax:complete` - Fired after the Pjax request finishes.
 * `pjax:success` - Fired after the Pjax request succeeds.
-* `pjax:error` - Fired after the Pjax request fails. Returning false will prevent the the fallback redirect.
+* `pjax:error` - Fired after the Pjax request fails.
 
 `send` and `complete` are a good pair of events to use if you are implementing a loading indicator (eg: [topbar](http://buunguyen.github.io/topbar/))
 

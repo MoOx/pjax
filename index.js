@@ -81,15 +81,6 @@ Pjax.prototype = {
     return require("./lib/switches-selectors.js").bind(this)(this.options.switches, this.options.switchesOptions, selectors, fromEl, toEl, options)
   },
 
-  // too much problem with the code below
-  // + it’s too dangerous
-  //   switchFallback: function(fromEl, toEl) {
-  //     this.switchSelectors(["head", "body"], fromEl, toEl)
-  //     // execute script when DOM is like it should be
-  //     Pjax.executeScripts(document.querySelector("head"))
-  //     Pjax.executeScripts(document.querySelector("body"))
-  //   }
-
   latestChance: function(href) {
     window.location = href
   },
@@ -139,16 +130,7 @@ Pjax.prototype = {
       } catch (e) { }
     }
 
-    // try {
     this.switchSelectors(this.options.selectors, tmpEl, document, options)
-
-    // }
-    // catch(e) {
-    //   if (this.options.debug) {
-    //     this.log("Pjax switch fail: ", e)
-    //   }
-    //   this.switchFallback(tmpEl, document)
-    // }
   },
 
   abortRequest: require("./lib/abort-request.js"),
