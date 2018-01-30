@@ -79,12 +79,11 @@ tape("test attach link preventDefaulted events", function(t) {
 tape("test options are not modified by attachLink", function(t) {
   var a = document.createElement("a")
   var options = {foo: "bar"}
-  var loadUrl = () => {};
+  var loadUrl = function() {};
 
-  attachLink.call({options, loadUrl}, a)
+  attachLink.call({options: options, loadUrl: loadUrl}, a)
 
-  var internalUri = window.location.protocol + "//" + window.location.host + window.location.pathname + window.location.search
-  a.href = internalUri
+  a.href = window.location.protocol + "//" + window.location.host + window.location.pathname + window.location.search
 
   trigger(a, "click")
 

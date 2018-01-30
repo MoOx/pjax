@@ -80,12 +80,11 @@ tape("test attach form preventDefaulted events", function(t) {
 tape("test options are not modified by attachForm", function(t) {
   var form = document.createElement("form")
   var options = {foo: "bar"}
-  var loadUrl = () => {}
+  var loadUrl = function() {}
 
-  attachForm.call({options, loadUrl}, form)
+  attachForm.call({options: options, loadUrl: loadUrl}, form)
 
-  var internalUri = window.location.protocol + "//" + window.location.host + window.location.pathname + window.location.search
-  form.action = internalUri
+  form.action = window.location.protocol + "//" + window.location.host + window.location.pathname + window.location.search
   form.method = "GET"
   trigger(form, "submit")
 

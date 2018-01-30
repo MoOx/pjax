@@ -23,7 +23,7 @@ var Pjax = function(options) {
     }
 
     var parseOptions = require("./lib/proto/parse-options.js");
-    parseOptions.apply(this,[options])
+    parseOptions.call(this,options)
     this.log("Pjax options", this.options)
 
     if (this.options.scrollRestoration && "scrollRestoration" in history) {
@@ -168,7 +168,7 @@ Pjax.prototype = {
     this.request = this.doRequest(href, options.requestOptions, function(html, request) {
       // Fail if unable to load HTML via AJAX
       if (html === false) {
-        trigger(document,"pjax:complete pjax:error", options)
+        trigger(document, "pjax:complete pjax:error", options)
 
         return
       }
@@ -218,8 +218,7 @@ Pjax.prototype = {
           if (console && console.error) {
             console.error("Pjax switch fail: ", e)
           }
-          this.latestChance(href)
-          return
+          return this.latestChance(href)
         }
         else {
           throw e
