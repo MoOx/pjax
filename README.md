@@ -2,18 +2,18 @@
 
 [![Build Status](http://img.shields.io/travis/MoOx/pjax.svg)](https://travis-ci.org/MoOx/pjax).
 
-> Easily enable fast Ajax navigation on any website (using pushState +  xhr)
+> Easily enable fast AJAX navigation on any website (using pushState +  XHR)
 
 Pjax is ~~a jQuery plugin~~ **a standalone JavaScript module** that uses
-ajax (XmlHttpRequest) and
+AJAX (XmlHttpRequest) and
 [pushState()](https://developer.mozilla.org/en-US/docs/Web/Guide/API/DOM/Manipulating_the_browser_history)
 to deliver a fast browsing experience.
 
-_It allow you to completely transform user experience of standard websites
-(server side generated or static ones) to make them feel they browse an app.
-Especially for user that have low bandwidth connection._
+_It allows you to completely transform the user experience of standard websites
+(server side generated or static ones) to make them feel like they are browsing an app, 
+especially for users with low bandwidth connection._
 
-**No more full page reload. No more lots of HTTP request.**
+**No more full page reloads. No more multiple HTTP requests.**
 
 ## Demo
 
@@ -37,45 +37,45 @@ Especially for user that have low bandwidth connection._
 
 ## No dependencies
 
-_There is nothing you need. No jQuery or something._
+_There is nothing you need. No jQuery or anything else._
 
 ## How Pjax works
 
-Pjax loads page using ajax & updates the browser's current url using pushState without reloading your page's layout or any resources (js, css), giving a fast page load.
-_But under the hood, it's just ONE http request with a pushState() call._
-Obviously, for [browsers that don't support pushState()](http://caniuse.com/#search=pushstate) Pjax fully degrades (yeah, it doesn't do anything at all).
+Pjax loads pages using AJAX & updates the browser's current url using pushState without reloading your page's layout or any resources (JS, CSS), giving a fast page load.
+_But under the hood, it's just ONE HTTP request with a pushState() call._
+Obviously, for [browsers that don't support pushState()](http://caniuse.com/#search=pushstate) Pjax gracefully degrades and does not do anything at all.
 
 It simply works with all permalinks & can update all parts of the page you
-want (including html metas, title, navigation state).
+want (including HTML metas, title, and navigation state).
 
-- It's not limited to one container, like jQuery-Pjax is,
-- It fully support browser history (back & forward buttons),
-- It **will** support keyboard browsing (@todo),
-- Automatically fallback to classic navigation for externals pages (thanks to Capitain Obvious help),
-- Automatically fallback to classic navigation for internals pages that will not have the appropriated DOM tree,
+- It's not limited to one container, like jQuery-Pjax is.
+- It fully supports browser history (back & forward buttons).
+- It supports keyboard browsing.
+- Automatically falls back to classic navigation for external pages (thanks to Capitain Obvious's help).
+- Automatically falls back to classic navigation for internal pages that do not have an appropriate DOM tree.
 - You can add pretty cool CSS transitions (animations) very easily.
-- It's around 3kb (minified & gzipped).
+- It's around 4kb (minified & gzipped).
 
 ### Under the hood
 
-- It listen to every clicks on links _you want_ (by default all of them),
-- When an internal link is clicked, Pjax grabs HTML from your server via ajax,
-- Pjax render pages DOM tree (without loading any resources - images, css, js...)
-- It check if all defined parts can be replaced:
-    - if page doesn't suit requirement, classic navigation used,
-    - if page suits requirement, Pjax does all defined DOM replacements
-- Then, it updates the browser's current url using pushState
+- It listens to every click on links _you want_ (by default all of them).
+- When an internal link is clicked, Pjax grabs HTML from your server via AJAX.
+- Pjax renders the page's DOM tree (without loading any resources - images, CSS, JS...).
+- It checks that all defined parts can be replaced:
+  - if the page doesn't meet the requirements, classic navigation is used.
+  - if page meets the requirements, Pjax does all defined DOM replacements.
+- Then, it updates the browser's current URL using pushState.
 
 ## Overview
 
-Pjax is fully automatic. You won't need to setup anything on the existing HTML.
+Pjax is fully automatic. You don't need to setup anything in the existing HTML.
 You just need to designate some elements on your page that will be replaced when
 you navigate your site.
 
 Consider the following page.
 
 ```html
-<!doctype html>
+<!DOCTYPE html>
 <html>
 <head>
   <!-- metas, title, styles, ... -->
@@ -93,7 +93,7 @@ Consider the following page.
 </html>
 ```
 
-We want Pjax to grab the url `/blah` then replace `.my-Content` with whatever it gets back.
+We want Pjax to intercept the URL `/blah`, and replace `.my-Content` with the results of the request.
 Oh and the `<nav>` (that contains a status marker somewhere) can be updated too (or stay the same, as you wish).
 And also the `<aside>` please.
 So we want to update `[".my-Header", ".my-Content", ".my-Sidebar"]`, **without reloading styles nor scripts**.
@@ -104,23 +104,23 @@ We do this by telling Pjax to listen on `a` tags and use CSS selectors defined a
 new Pjax({ selectors: ["title", ".my-Header", ".my-Content", ".my-Sidebar"] })
 ```
 
-Now when someone in a Pjax-compatible browser clicks "blah" the content of all selectors will be replaced with the one found in the "blah" content.
+Now, when someone in a Pjax-compatible browser clicks "blah", the content of all selectors will be replaced with the one found in the "blah" content.
 
 _Magic! For real!_ **There is completely no need to do anything on server side!**
 
 ## Differences with [jQuery-pjax](https://github.com/defunkt/jquery-pjax)
 
-- No jQuery dependency,
-- Not limited to a container,
-- No server side requirements,
-- Works for CommonJS environment (browserify), AMD (RequireJS) or even globally,
-- Allow page transition with CSS animations,
-- Can be easily hacked since every method is public (so overridable)
+- No jQuery dependency
+- Not limited to a container
+- No server side requirements
+- Works for CommonJS environment (browserify), AMD (RequireJS) or even globally
+- Allow page transition with CSS animations
+- Can be easily tweaked, since every method is public (and as a result, overridable)
 
 ## Compatibility
 
 Pjax only works with [browsers that support the `history.pushState` API](http://caniuse.com/#search=pushstate).
-When the API isn't supported Pjax goes into fallback mode (it just does nothing).
+When the API isn't supported, Pjax goes into fallback mode (and it just does nothing).
 
 To see if Pjax is actually supported by your browser, use `Pjax.isSupported()`.
 
@@ -137,7 +137,7 @@ new Pjax({
 })
 ```
 
-This will enable Pjax on all links and designate the part to replace using CSS selectors `"title", ".my-Header", ".my-Content", ".my-Sidebar"`.
+This will enable Pjax on all links, and designate the part to replace using CSS selectors `"title", ".my-Header", ".my-Content", ".my-Sidebar"`.
 
 For some reason, you might want to just target some elements to apply Pjax behavior.
 In that case, you can 2 differents things:
@@ -158,17 +158,17 @@ Pjax.prototype.getElements = function() {
 new Pjax({})
 ```
 
-When instanciating a `Pjax` object, you need to pass all options as an object:
+When instantiating a `Pjax` object, you need to pass all options as an object:
 
 #### Options
 
-##### `elements` (String, default "a[href], form[action]")
+##### `elements` (String, default: `"a[href], form[action]"`)
 
-CSS Selector to use to retrieve links to apply Pjax
+CSS selector to use to retrieve links to apply Pjax to.
 
-##### `selectors` (Array, default ["title", ".js-Pjax"])
+##### `selectors` (Array, default: `["title", ".js-Pjax"]`)
 
-CSS Selectors to replace. If a query returns multiples items, it will just keep the index.
+CSS selectors to replace. If a query returns multiples items, it will just keep the index.
 
 Example of what you can do:
 
@@ -188,13 +188,13 @@ Example of what you can do:
 ```
 
 This example is correct and should work "as expected".
-_If there is not the same amount of DOM element from current page and new page,
-the Pjax behavior will fallback to normal page load._
+_If the current page and new page do not have the same amount of DOM elements,
+Pjax will fallback to normal page load._
 
-##### `switches` (Object, default {})
+##### `switches` (Object, default: `{}`)
 
 Objects containing callbacks that can be used to switch old element with new element.
-Keys should be one of the defined selector.
+Keys should be one of the defined selectors.
 
 Examples:
 
@@ -214,20 +214,20 @@ new Pjax({
 })
 ```
 
-Callbacks are binded to Pjax instance itself to allow you to reuse it (ex: `this.onSwitch()`)
+Callbacks are bound to Pjax instance itself to allow you to reuse it (ex: `this.onSwitch()`)
 
 ###### Existing switches callback
 
 - `Pjax.switches.outerHTML`: default behavior, replace elements using outerHTML
 - `Pjax.switches.innerHTML`: replace elements using innerHTML & copy className too
-- `Pjax.switches.sideBySide`: smart replacement that allow you to have both elements in the same parent when you want to use CSS animations. Old elements are removed when all childs have been fully animated ([animationEnd](http://www.w3.org/TR/css3-animations/#animationend) event triggered)
+- `Pjax.switches.sideBySide`: smart replacement that allows you to have both elements in the same parent when you want to use CSS animations. Old elements are removed when all children have been fully animated ([animationEnd](http://www.w3.org/TR/css3-animations/#animationend) event triggered)
 
 ###### Create a switch callback
 
 Your function can do whatever you want, but you need to:
 
 - replace oldEl content by newEl content in some fashion
-- call `this.onSwitch()` to trigger attached callback.
+- call `this.onSwitch()` to trigger the attached callback.
 
 Here is the default behavior as example
 
@@ -238,10 +238,10 @@ function(oldEl, newEl, pjaxRequestOptions, switchesClasses) {
 }
 ```
 
-##### `switchesOptions` (Object, default {})
+##### `switchesOptions` (Object, default: `{}`)
 
-This are options that can be used during switch by switchers ( for now, only `Pjax.switches.sideBySide` use it).
-Very convenient when you use something like [Animate.css](https://github.com/daneden/animate.css)
+These are options that can be used during switch by switchers ( for now, only `Pjax.switches.sideBySide` uses it).
+This is very convenient when you use something like [Animate.css](https://github.com/daneden/animate.css)
 with or without [WOW.js](https://github.com/matthieua/WOW).
 
 ```js
@@ -278,7 +278,7 @@ new Pjax({
 _Note that remove class include `Animated--reverse` which is a simple way to not have
 to create duplicate transition for (slideIn + reverse => slideOut)._
 
-The following CSS will be required to make something nice
+The following CSS will be required to make something nice:
 
 ```css
 /*
@@ -336,8 +336,7 @@ The following CSS will be required to make something nice
   }
 ```
 
-To get understand this CSS, here is a HTML snippet
-
+To get understand this CSS, here is an HTML snippet:
 
 ```html
 <!doctype html>
@@ -365,52 +364,52 @@ To get understand this CSS, here is a HTML snippet
 </html>
 ```
 
-##### `history` (Boolean, default true)
+##### `history` (Boolean, default: `true`)
 
-Enable pushState. Only disable if you are crazy.
-Internaly, this option is used when `popstate` is used (to not pushState again).
-You should forget that option.
+Enable pushState. Disabling this will prevent Pjax from controlling the history.
+However, there is almost no use case where you would want to do that.
 
-##### `analytics` (Function|Boolean, default to a function that pushes `_gaq` `_trackPageview` or sends `ga` `pageview`
+Internally, this option is used when a `popstate` event triggers Pjax (to not pushState again).
+
+##### `analytics` (Function|Boolean, default: a function that pushes `_gaq` `_trackPageview` or sends `ga` `pageview`
 
 Function that allows you to add behavior for analytics. By default it tries to track
-a pageview with Google Analytics.
+a pageview with Google Analytics (if it exists on the page).
 It's called every time a page is switched, even for history buttons.
 
 Set to `false` to disable this behavior.
 
-##### `scrollTo` (Integer, default to 0)
+##### `scrollTo` (Integer, default: `0`)
 
-Value (in px) to scrollTo when a page is switched.
+Value (in px from the top of the page) to scroll to when a page is switched.
 
-##### `scrollRestoration` (Boolean, default true)
+##### `scrollRestoration` (Boolean, default: `true`)
 
 When set to true, attempt to restore the scroll position when navigating backwards or forwards.
 
-##### `cacheBust` (Boolean, default true)
+##### `cacheBust` (Boolean, default: `true`)
 
-When set to true,
-append a timestamp query string segment to the requested URLs
+When set to true, append a timestamp query string segment to the requested URLs
 in order to skip browser cache.
 
-##### `debug` (Boolean, default to false)
+##### `debug` (Boolean, default: `false`)
 
-Enable verbose mode & doesn't use fallback when there is an error.
+Enables verbose mode & doesn't use fallback when there is an error.
 Useful to debug page layout differences.
 
-##### `currentUrlFullReload` (Boolean, default to false)
+##### `currentUrlFullReload` (Boolean, default: `false`)
 
-When set to true, clicking on a link that point the current url trigger a full page reload.
+When set to true, clicking on a link that points to the current URL will trigger a full page reload.
 
-##### `timeout` (Integer, default to 0)
+##### `timeout` (Integer, default: `0`)
 
 The timeout in milliseconds for the XHR requests. Set to 0 to disable the timeout.
 
 ### Events
 
-Pjax fires a number of events regardless of how its invoked.
+Pjax fires a number of events regardless of how it's invoked.
 
-All events are fired from the _document_, not the link was clicked.
+All events are fired from the _document_, not the link that was clicked.
 
 #### Ajax related events
 
@@ -422,14 +421,14 @@ All events are fired from the _document_, not the link was clicked.
 `send` and `complete` are a good pair of events to use if you are implementing a loading indicator (eg: [topbar](http://buunguyen.github.io/topbar/))
 
 ```js
-$(document).on('pjax:send', topbar.show)
-$(document).on('pjax:complete', topbar.hide)
+document.addEventListener('pjax:send', topbar.show)
+document.addEventListener('pjax:complete', topbar.hide)
 ```
 
 #### Note about DOM ready state
 
-Most of the time, you have code attached & related to the current DOM, that you only execute when page/dom is ready.
-Since Pjax doesn't magically rexecute you previous code each time you load a page, you need to make a simple thing to rexecute appropriate code:
+Most of the time, you have code attached & related to the current DOM, that you only execute when page/DOM is ready.
+Since Pjax doesn't magically re-execute your previous code each time you load a page, you need to add some simple code to re-execute the appropriate code:
 
 ```js
 function whenDOMReady() {
@@ -446,10 +445,10 @@ document.addEventListener("pjax:success", whenDOMReady)
 _Note: Don't create the Pjax in the `whenDOMReady` function._
 
 For my concern & usage, I `js-Pjax`ify all body children, including stuff like navigation & footer (to get navigation state easily updated).
-So attached behavior are rexecuted each time a page is loaded, like in the snippet above.
+So attached behavior is re-executed each time a page is loaded, like in the snippet above.
 
 If you want to just update a specific part (it's totally a good idea), you can just
-add the DOM related code in a function & rexecute this function when "pjax:success" event is done.
+add the DOM related code in a function & re-execute this function when "pjax:success" event is done.
 
 ```js
 // do your global stuff
@@ -472,10 +471,10 @@ document.addEventListener("pjax:success", whenContainerReady)
 ### Q: Disqus doesn't work anymore, how can I fix that ?
 
 A: There is a few things you need to do:
-- wrap your disqus snippet into a dom element that you will add to the `selector`
-arra (or just wrap it with class="js-Pjax") & be sure to have a least the empty
+- wrap your Disqus snippet into a dom element that you will add to the `selector`
+property (or just wrap it with `class="js-Pjax"`) & be sure to have at least the empty
 wrapper on each page (to avoid differences of DOM between pages)
-- edit your disqus snippet like the one below
+- edit your Disqus snippet like the one below
 
 #### Disqus snippet before pjax integration
 
@@ -526,7 +525,7 @@ wrapper on each page (to avoid differences of DOM between pages)
 </div>
 ```
 
-**Note: The thing you need to understand is that Pjax handle inline `<script>` only for container you are reloading.**
+**Note: The thing you need to understand is that Pjax handles inline `<script>` only for container you are reloading.**
 
 ---
 
@@ -540,7 +539,7 @@ Clone this repository and run `npm run example`, which will open the example app
 
 * ⇄ Pull requests and ★ Stars are always welcome.
 * For bugs and feature requests, please create an issue.
-* Pull requests must be accompanied by passing automated tests (`$ npm test`).
+* Pull requests must be accompanied by passing automated tests (`npm test`).
 
 ## [CHANGELOG](CHANGELOG.md)
 
