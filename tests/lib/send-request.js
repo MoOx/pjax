@@ -22,7 +22,7 @@ tape("test xhr request", function(t) {
       options: {
         cacheBust: true
       }
-    });
+    })
     var r = requestCacheBust(url, {}, function(result) {
       t.equal(r.responseURL.indexOf("?"), url.length, "XHR URL is cache-busted when configured to be")
       try {
@@ -40,7 +40,7 @@ tape("test xhr request", function(t) {
       options: {
         cacheBust: false
       }
-    });
+    })
     var r = requestNoCacheBust(url, {}, function() {
       t.equal(r.responseURL, url, "XHR URL is left untouched")
       t.end()

@@ -91,5 +91,5 @@ tape("test options are not modified by attachForm", function(t) {
   t.equal(1, Object.keys(options).length, "options object that is passed in should not be modified")
   t.equal("bar", options.foo, "options object that is passed in should not be modified")
 
-  t.end();
+  t.end()
 })

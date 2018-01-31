@@ -79,7 +79,7 @@ tape("test attach link preventDefaulted events", function(t) {
 tape("test options are not modified by attachLink", function(t) {
   var a = document.createElement("a")
   var options = {foo: "bar"}
-  var loadUrl = function() {};
+  var loadUrl = function() {}
 
   attachLink.call({options: options, loadUrl: loadUrl}, a)
 
@@ -90,5 +90,5 @@ tape("test options are not modified by attachLink", function(t) {
   t.equal(1, Object.keys(options).length, "options object that is passed in should not be modified")
   t.equal("bar", options.foo, "options object that is passed in should not be modified")
 
-  t.end();
+  t.end()
 })
