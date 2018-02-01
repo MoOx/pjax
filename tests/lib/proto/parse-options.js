@@ -23,6 +23,7 @@ tape("test parse initalization options function", function(t) {
     t.equal(pjax.options.scrollRestoration, true)
     t.equal(pjax.options.cacheBust, true)
     t.equal(pjax.options.debug, false)
+    t.equal(pjax.options.currentUrlFullReload, false)
     t.end()
   })
 

@@ -402,6 +402,32 @@ Enables verbose mode. Useful to debug page layout differences.
 
 When set to true, clicking on a link that points to the current URL will trigger a full page reload.
 
+The default is `false`, so clicking on such a link will do nothing. 
+If you want to add some custom behavior, add a click listener to the link, 
+and set `preventDefault` to true, to prevent Pjax from receiving the event.
+
+Here is some sample code:
+
+```js
+  var links = document.querySelectorAll(".js-Pjax");
+
+  for (var i = 0; i < links.length; i++) {
+    var el = links[i]
+
+    el.addEventListener("click", function(e) {
+      if (el.href === window.location.href.split("#")[0]) {
+        e.preventDefault();
+        console.log("Link to current page clicked");
+        // Custom code goes here.
+      }
+    })
+  }
+```
+
+(Note that if `cacheBust` is set to true, the code that checks if the href 
+is the same as the current page's URL will not work, due to the query string 
+appended to force a cache bust).
+
 ##### `timeout` (Integer, default: `0`)
 
 The timeout in milliseconds for the XHR requests. Set to 0 to disable the timeout.
