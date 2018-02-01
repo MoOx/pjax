@@ -56,13 +56,22 @@ Pjax.switches = switches
 Pjax.prototype = {
   log: require("./lib/proto/log.js"),
 
-  getElements: require("./lib/proto/get-elements.js"),
+  getElements: function(el) {
+    return el.querySelectorAll(this.options.elements)
+  },
 
-  parseDOM: require("./lib/proto/parse-dom.js"),
+  parseDOM: function(el) {
+    var parseElement = require("./parse-element")
+    forEachEls(this.getElements(el), parseElement, this)
+  },
 
-  refresh: require("./lib/proto/refresh.js"),
+  refresh: function(el) {
+    this.parseDOM(el || document)
+  },
 
-  reload: require("./lib/reload.js"),
+  reload: function() {
+    window.location.reload()
+  },
 
   attachLink: require("./lib/proto/attach-link.js"),
 
