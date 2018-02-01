@@ -61,7 +61,7 @@ Pjax.prototype = {
   },
 
   parseDOM: function(el) {
-    var parseElement = require("./parse-element")
+    var parseElement = require("./lib/proto/parse-element")
     forEachEls(this.getElements(el), parseElement, this)
   },
 
