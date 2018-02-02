@@ -1,3 +1,39 @@
+# 0.2.5 - 2018-02-02
+
+- Fixed: Async switch functions now work correctly, because the DOM is now parsed after all the switches finish.
+  ([#79](https://github.com/MoOx/pjax/pull/79), [#110](https://github.com/MoOx/pjax/pull/110) - @oskarrough, @BehindTheMath, @robinnorth)
+- Fixed: Bug on IE11 preventing AJAX page refresh.
+  ([#81](https://github.com/MoOx/pjax/pull/81) - @CPTechnikVX)
+- Fixed: Default switches are now available as `Pjax.switches`.
+  ([#92](https://github.com/MoOx/pjax/pull/92) - @BehindTheMath)
+- Fixed: An error that was caused by a missing `switchElementsAlt`.
+  ([#93](https://github.com/MoOx/pjax/pull/93), [#104](https://github.com/MoOx/pjax/pull/104) - @BehindTheMath, @robinnorth)
+- Fixed: Incorrect `main` field in npm package
+  ([#105](https://github.com/MoOx/pjax/pull/105) - @robinnorth)
+- Fixed: A pending XHR is now aborted if the user navigates somewhere else before the request is finished.
+  ([#114](https://github.com/MoOx/pjax/pull/114) - @robinnorth)
+- Fixed: When rendering new content, focus will now be removed only from elements within one of the containers manipulated by Pjax.
+  ([#116](https://github.com/MoOx/pjax/pull/116) - @BehindTheMath)
+- Fixed: Stop dispatching extraneous `pjax:complete` events when external scripts load
+  ([#118](https://github.com/MoOx/pjax/pull/118) - @robinnorth)
+- Added: Send the `X-PJAX` header with XHR requests.
+  ([#80](https://github.com/MoOx/pjax/pull/80) - @bram1028)
+- Added: Direct download link for script tags. (@MoOx)
+- Added: Pass the element that triggered Pjax to the `pjax:send` event.
+  ([#94](https://github.com/MoOx/pjax/pull/94) - @BehindTheMath)
+- Added: An option to set a timeout for XHR requests.
+  ([#95](https://github.com/MoOx/pjax/pull/95) - @BehindTheMath)
+- Added: Checks for XHR redirects
+  ([#101](https://github.com/MoOx/pjax/pull/101) - @BehindTheMath)
+- Added: Save scroll position with history, and restore when navigating backwards or forwards.
+  ([#110](https://github.com/MoOx/pjax/pull/110), [#119](https://github.com/MoOx/pjax/pull/119) - @BehindTheMath, @robinnorth)
+- Added: Scroll to element position when URL contains a hash
+  ([#110](https://github.com/MoOx/pjax/pull/110) - @BehindTheMath)
+- Added: Minified version of the Pjax bundle.
+  ([#115](https://github.com/MoOx/pjax/pull/115) - @BehindTheMath)
+- Changed: Miscellaneous code and tests cleanup.
+  ([#96](https://github.com/MoOx/pjax/pull/96), [#98](https://github.com/MoOx/pjax/pull/98), [#99](https://github.com/MoOx/pjax/pull/99), [#100](https://github.com/MoOx/pjax/pull/1070), [#107](https://github.com/MoOx/pjax/pull/107), [#113](https://github.com/MoOx/pjax/pull/113), [#120](https://github.com/MoOx/pjax/pull/120) - @BehindTheMath, @MoOx, @robinnorth)
+
 # 0.2.4 - 2016-06-28
 
 - Fixed: ``refresh`` should now work (use `this.parseDOM` for refresh)
