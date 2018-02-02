@@ -1,19 +1,14 @@
 var clone = require("./lib/clone.js")
 var executeScripts = require("./lib/execute-scripts.js")
-
 var forEachEls = require("./lib/foreach-els.js")
-
+var switches = require("./lib/switches")
 var newUid = require("./lib/uniqueid.js")
 
-var noop = require("./lib/util/noop")
-var contains = require("./lib/util/contains.js")
-
 var on = require("./lib/events/on.js")
-// var off = require("./lib/events/on.js")
 var trigger = require("./lib/events/trigger.js")
 
-var defaultSwitches = require("./lib/switches")
-
+var contains = require("./lib/util/contains.js")
+var noop = require("./lib/util/noop")
 
 var Pjax = function(options) {
     this.state = {
@@ -22,8 +17,8 @@ var Pjax = function(options) {
       options: null
     }
 
-    var parseOptions = require("./lib/proto/parse-options.js");
-    parseOptions.apply(this,[options])
+    var parseOptions = require("./lib/proto/parse-options.js")
+    parseOptions.call(this,options)
     this.log("Pjax options", this.options)
 
     if (this.options.scrollRestoration && "scrollRestoration" in history) {
@@ -40,7 +35,7 @@ var Pjax = function(options) {
         opt.url = st.state.url
         opt.title = st.state.title
         opt.history = false
-        opt.requestOptions = {};
+        opt.requestOptions = {}
         opt.scrollPos = st.state.scrollPos
         if (st.state.uid < this.lastUid) {
           opt.backward = true
@@ -56,18 +51,27 @@ var Pjax = function(options) {
     }.bind(this))
   }
 
-Pjax.switches = defaultSwitches
+Pjax.switches = switches
 
 Pjax.prototype = {
   log: require("./lib/proto/log.js"),
 
-  getElements: require("./lib/proto/get-elements.js"),
+  getElements: function(el) {
+    return el.querySelectorAll(this.options.elements)
+  },
 
-  parseDOM: require("./lib/proto/parse-dom.js"),
+  parseDOM: function(el) {
+    var parseElement = require("./lib/proto/parse-element")
+    forEachEls(this.getElements(el), parseElement, this)
+  },
 
-  refresh: require("./lib/proto/refresh.js"),
+  refresh: function(el) {
+    this.parseDOM(el || document)
+  },
 
-  reload: require("./lib/reload.js"),
+  reload: function() {
+    window.location.reload()
+  },
 
   attachLink: require("./lib/proto/attach-link.js"),
 
@@ -80,15 +84,6 @@ Pjax.prototype = {
   switchSelectors: function(selectors, fromEl, toEl, options) {
     return require("./lib/switches-selectors.js").bind(this)(this.options.switches, this.options.switchesOptions, selectors, fromEl, toEl, options)
   },
-
-  // too much problem with the code below
-  // + it’s too dangerous
-  //   switchFallback: function(fromEl, toEl) {
-  //     this.switchSelectors(["head", "body"], fromEl, toEl)
-  //     // execute script when DOM is like it should be
-  //     Pjax.executeScripts(document.querySelector("head"))
-  //     Pjax.executeScripts(document.querySelector("body"))
-  //   }
 
   latestChance: function(href) {
     window.location = href
@@ -139,16 +134,7 @@ Pjax.prototype = {
       } catch (e) { }
     }
 
-    // try {
     this.switchSelectors(this.options.selectors, tmpEl, document, options)
-
-    // }
-    // catch(e) {
-    //   if (this.options.debug) {
-    //     this.log("Pjax switch fail: ", e)
-    //   }
-    //   this.switchFallback(tmpEl, document)
-    // }
   },
 
   abortRequest: require("./lib/abort-request.js"),
@@ -161,14 +147,14 @@ Pjax.prototype = {
     // Abort any previous request
     this.abortRequest(this.request)
 
-    trigger(document, "pjax:send", options);
+    trigger(document, "pjax:send", options)
 
     // Do the request
     options.requestOptions.timeout = this.options.timeout
     this.request = this.doRequest(href, options.requestOptions, function(html, request) {
       // Fail if unable to load HTML via AJAX
       if (html === false) {
-        trigger(document,"pjax:complete pjax:error", options)
+        trigger(document, "pjax:complete pjax:error", options)
 
         return
       }
@@ -218,8 +204,7 @@ Pjax.prototype = {
           if (console && console.error) {
             console.error("Pjax switch fail: ", e)
           }
-          this.latestChance(href)
-          return
+          return this.latestChance(href)
         }
         else {
           throw e
@@ -236,7 +221,7 @@ Pjax.prototype = {
     // http://www.w3.org/html/wg/drafts/html/master/forms.html
     var autofocusEl = Array.prototype.slice.call(document.querySelectorAll("[autofocus]")).pop()
     if (autofocusEl && document.activeElement !== autofocusEl) {
-      autofocusEl.focus();
+      autofocusEl.focus()
     }
 
     // execute scripts when DOM have been completely updated
@@ -304,7 +289,7 @@ Pjax.prototype = {
             } while (target)
           }
         }
-        window.scrollTo(0, curtop);
+        window.scrollTo(0, curtop)
       }
       else if (state.options.scrollTo !== false) {
         // Scroll page to top on new page load
@@ -328,7 +313,7 @@ Pjax.prototype = {
   }
 }
 
-Pjax.isSupported = require("./lib/is-supported.js");
+Pjax.isSupported = require("./lib/is-supported.js")
 
 // arguably could do `if( require("./lib/is-supported.js")()) {` but that might be a little to simple
 if (Pjax.isSupported()) {

@@ -18,8 +18,8 @@ if (!("responseURL" in XMLHttpRequest.prototype)) {
 tape("test aborting xhr request", function(t) {
   var requestCacheBust = sendRequest.bind({
     options: {
-      cacheBust: true,
-    },
+      cacheBust: true
+    }
   })
 
   t.test("- pending request is aborted", function(t) {

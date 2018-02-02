@@ -7,8 +7,7 @@ var trigger = require("../../lib/events/trigger")
 var el = document.createElement("div")
 var el2 = document.createElement("span")
 var els = [el, el2]
-// var eventType2 = "resize"
-// var eventsType = "click resize"
+
 var classCb = function() {
   this.className += "on"
 }
@@ -92,14 +91,14 @@ tape("test events on/off/trigger for multiple elements, multiple events", functi
 })
 
 tape("test events on top level elements", function(t) {
-  var el = document;
+  var el = document
 
   el.className = ""
   on(el, "click", classCb)
   trigger(el, "click")
   t.equal(el.className, "on", "attached callback has been fired properly on document")
 
-  el = window;
+  el = window
 
   el.className = ""
   // With jsdom, the default this is global, not window, so we need to explicitly bind to window.
