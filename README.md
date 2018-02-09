@@ -15,10 +15,6 @@ especially for users with low bandwidth connection._
 
 **No more full page reloads. No more multiple HTTP requests.**
 
-## Demo
-
-[You can see this running on my website](http://moox.io), with sexy CSS animations when switching pages.
-
 ## Installation
 
 - You can install Pjax from **npm**:
