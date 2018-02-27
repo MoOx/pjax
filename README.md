@@ -453,7 +453,7 @@ All events are fired from the _document_, not the link that was clicked.
 * `pjax:send` - Fired after the Pjax request begins.
 * `pjax:complete` - Fired after the Pjax request finishes.
 * `pjax:success` - Fired after the Pjax request succeeds.
-* `pjax:error` - Fired after the Pjax request fails.
+* `pjax:error` - Fired after the Pjax request fails. The request object will be passed along as `event.options.request`.
 
 `send` and `complete` are a good pair of events to use if you are implementing a loading indicator (eg: [topbar](http://buunguyen.github.io/topbar/))
 
