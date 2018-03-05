@@ -160,7 +160,7 @@ Pjax.prototype.getElements = function() {
 new Pjax()
 ```
 
-#### `loadUrl(href, (options))`
+#### `loadUrl(href, [options])`
 
 With this method, you can manually trigger loading of a URL:
 
