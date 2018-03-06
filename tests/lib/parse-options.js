@@ -1,10 +1,10 @@
 var tape = require("tape")
 
-var parseOptions = require("../../../lib/proto/parse-options.js")
+var parseOptions = require("../../lib/parse-options.js")
 tape("test parse initalization options function", function(t) {
   t.test("- default options", function(t) {
     var pjax = {}
-    parseOptions.call(pjax, {})
+    pjax.options = parseOptions({})
 
     t.equal(pjax.options.elements, "a[href], form[action]")
     t.equal(pjax.options.selectors.length, 2, "selectors length")
@@ -30,7 +30,7 @@ tape("test parse initalization options function", function(t) {
   // verify analytics always ends up as a function even when passed not a function
   t.test("- analytics is a function", function(t) {
     var pjax = {}
-    parseOptions.call(pjax, {analytics: "some string"})
+    pjax.options = parseOptions({analytics: "some string"})
 
     t.deepEqual(typeof pjax.options.analytics, "function")
     t.end()
@@ -39,7 +39,7 @@ tape("test parse initalization options function", function(t) {
   // verify that the value false for scrollTo is not squashed
   t.test("- scrollTo remains false", function(t) {
     var pjax = {}
-    parseOptions.call(pjax, {scrollTo: false})
+    pjax.options = parseOptions({scrollTo: false})
 
     t.deepEqual(pjax.options.scrollTo, false)
     t.end()

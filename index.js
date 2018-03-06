@@ -1,13 +1,15 @@
-var clone = require("./lib/clone.js")
 var executeScripts = require("./lib/execute-scripts.js")
 var forEachEls = require("./lib/foreach-els.js")
+var parseOptions = require("./lib/parse-options.js")
 var switches = require("./lib/switches")
 var newUid = require("./lib/uniqueid.js")
 
 var on = require("./lib/events/on.js")
 var trigger = require("./lib/events/trigger.js")
 
+var clone = require("./lib/util/clone.js")
 var contains = require("./lib/util/contains.js")
+var extend = require("./lib/util/extend.js")
 var noop = require("./lib/util/noop")
 
 var Pjax = function(options) {
@@ -17,8 +19,8 @@ var Pjax = function(options) {
       options: null
     }
 
-    var parseOptions = require("./lib/proto/parse-options.js")
-    parseOptions.call(this,options)
+
+    this.options = parseOptions(options)
     this.log("Pjax options", this.options)
 
     if (this.options.scrollRestoration && "scrollRestoration" in history) {
@@ -35,7 +37,6 @@ var Pjax = function(options) {
         opt.url = st.state.url
         opt.title = st.state.title
         opt.history = false
-        opt.requestOptions = {}
         opt.scrollPos = st.state.scrollPos
         if (st.state.uid < this.lastUid) {
           opt.backward = true
@@ -142,6 +143,10 @@ Pjax.prototype = {
   doRequest: require("./lib/send-request.js"),
 
   loadUrl: function(href, options) {
+    options = typeof options === "object" ?
+      extend({}, this.options, options) :
+      clone(this.options)
+
     this.log("load href", href, options)
 
     // Abort any previous request
@@ -150,8 +155,7 @@ Pjax.prototype = {
     trigger(document, "pjax:send", options)
 
     // Do the request
-    options.requestOptions.timeout = this.options.timeout
-    this.request = this.doRequest(href, options.requestOptions, function(html, request) {
+    this.request = this.doRequest(href, options, function(html, request) {
       // Fail if unable to load HTML via AJAX
       if (html === false) {
         trigger(document, "pjax:complete pjax:error", options)

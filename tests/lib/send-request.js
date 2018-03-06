@@ -18,12 +18,7 @@ tape("test xhr request", function(t) {
   var url = "https://httpbin.org/get"
 
   t.test("- request is made, gets a result, and is cache-busted", function(t) {
-    var requestCacheBust = sendRequest.bind({
-      options: {
-        cacheBust: true
-      }
-    })
-    var r = requestCacheBust(url, {}, function(result) {
+    var r = sendRequest(url, {cacheBust: true}, function(result) {
       t.equal(r.responseURL.indexOf("?"), url.length, "XHR URL is cache-busted when configured to be")
       try {
         result = JSON.parse(result)
@@ -36,12 +31,7 @@ tape("test xhr request", function(t) {
     })
   })
   t.test("- request is not cache-busted when configured not to be", function(t) {
-    var requestNoCacheBust = sendRequest.bind({
-      options: {
-        cacheBust: false
-      }
-    })
-    var r = requestNoCacheBust(url, {}, function() {
+    var r = sendRequest(url, {}, function() {
       t.equal(r.responseURL, url, "XHR URL is left untouched")
       t.end()
     })

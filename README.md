@@ -124,9 +124,13 @@ To see if Pjax is actually supported by your browser, use `Pjax.isSupported()`.
 
 ## Usage
 
-### `new Pjax()`
+### Methods
 
-Let's talk more about the most basic way to get started:
+#### `new Pjax()`
+
+Let's talk more about the most basic way to get started.
+
+When instantiating `Pjax`, you can pass options in to the constructor as an object:
 
 ```js
 new Pjax({
@@ -153,12 +157,24 @@ Pjax.prototype.getElements = function() {
   return document.getElementsByClassName(".js-Pjax")
 }
 
-new Pjax({})
+new Pjax()
 ```
 
-When instantiating a `Pjax` object, you need to pass all options as an object:
+#### `loadUrl(href, [options])`
 
-#### Options
+With this method, you can manually trigger loading of a URL:
+
+```js
+var pjax = new Pjax()
+
+// use case 1 (without options override)
+pjax.loadUrl("/your-url")
+
+// use case 2 (with options override)
+pjax.loadUrl("/your-other-url", {timeout: 10})
+```
+
+### Options
 
 ##### `elements` (String, default: `"a[href], form[action]"`)
 
@@ -398,8 +414,8 @@ Enables verbose mode. Useful to debug page layout differences.
 
 When set to true, clicking on a link that points to the current URL will trigger a full page reload.
 
-The default is `false`, so clicking on such a link will do nothing. 
-If you want to add some custom behavior, add a click listener to the link, 
+The default is `false`, so clicking on such a link will do nothing.
+If you want to add some custom behavior, add a click listener to the link,
 and set `preventDefault` to true, to prevent Pjax from receiving the event.
 
 Here is some sample code:
@@ -420,8 +436,8 @@ Here is some sample code:
   }
 ```
 
-(Note that if `cacheBust` is set to true, the code that checks if the href 
-is the same as the current page's URL will not work, due to the query string 
+(Note that if `cacheBust` is set to true, the code that checks if the href
+is the same as the current page's URL will not work, due to the query string
 appended to force a cache bust).
 
 ##### `timeout` (Integer, default: `0`)
