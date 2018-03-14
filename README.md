@@ -262,6 +262,7 @@ Callbacks are bound to Pjax instance itself to allow you to reuse it (ex: `this.
 
 - `Pjax.switches.outerHTML`: default behavior, replace elements using outerHTML
 - `Pjax.switches.innerHTML`: replace elements using innerHTML and copy className too
+- `Pjax.switches.replaceNode`: replace elements using replaceChild
 - `Pjax.switches.sideBySide`: smart replacement that allows you to have both elements in the same parent when you want to use CSS animations. Old elements are removed when all children have been fully animated ([animationEnd](http://www.w3.org/TR/css3-animations/#animationend) event triggered)
 
 ###### Create a switch callback
