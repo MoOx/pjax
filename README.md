@@ -578,7 +578,7 @@ Clone this repository and run `npm run example`, which will open the example app
 
 * ⇄ Pull requests and ★ Stars are always welcome.
 * For bugs and feature requests, please create an issue.
-* Pull requests must be accompanied by passing automated tests (`npm test`).
+* Pull requests must be accompanied by passing automated tests (`npm test`). If the API is changed, please update the Typescript definitions as well (`pjax.d.ts`).
 
 ## [CHANGELOG](CHANGELOG.md)
 
