@@ -174,6 +174,34 @@ pjax.loadUrl("/your-url")
 pjax.loadUrl("/your-other-url", {timeout: 10})
 ```
 
+#### `handleResponse(responseText, request, href)`
+
+This method takes the raw response, processes the URL, then calls `pjax.loadContent()` to actually load it into the DOM.
+
+It is passed the following arguments:
+
+* **responseText** (string): This is the raw response text. This is equivalent to `request.responseText`.
+* **request** (XMLHttpRequest): This is the XHR object.
+* **href** (string): This is the URL that was passed to `loadUrl()`.
+
+You can override this if you want to process the data before, or instead of, it being loaded into the DOM.
+
+For example, if you want to check for a JSON response, you could do the following:
+
+```js
+var pjax = new Pjax();
+
+pjax._handleResponse = pjax.handleResponse;
+
+pjax.handleResponse = function(responseText, request, href) {
+  if (request.responseText.match("<html")) {
+    pjax._handleResponse(responseText, request, href);
+  } else {
+    // handle response here
+  }
+}
+```
+
 ### Options
 
 ##### `elements` (String, default: `"a[href], form[action]"`)
@@ -453,7 +481,7 @@ All events are fired from the _document_, not the link that was clicked.
 * `pjax:send` - Fired after the Pjax request begins.
 * `pjax:complete` - Fired after the Pjax request finishes.
 * `pjax:success` - Fired after the Pjax request succeeds.
-* `pjax:error` - Fired after the Pjax request fails.
+* `pjax:error` - Fired after the Pjax request fails. The request object will be passed along as `event.options.request`.
 
 `send` and `complete` are a good pair of events to use if you are implementing a loading indicator (eg: [topbar](http://buunguyen.github.io/topbar/))
 
