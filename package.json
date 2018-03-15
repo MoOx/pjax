@@ -24,7 +24,7 @@
     "pjax.js",
     "pjax.min.js"
   ],
-  "types": "pjax.d.ts",
+  "types": "index.d.ts",
   "devDependencies": {
     "browserify": "^15.0.0",
     "jscs": "^3.0.7",
