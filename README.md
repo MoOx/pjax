@@ -385,7 +385,7 @@ However, there is almost no use case where you would want to do that.
 
 Internally, this option is used when a `popstate` event triggers Pjax (to not `pushState()` again).
 
-##### `analytics` (Function|Boolean, default: a function that pushes `_gaq` `_trackPageview` or sends `ga` `pageview`
+##### `analytics` (Function | Boolean, default: a function that pushes `_gaq` `_trackPageview` or sends `ga` `pageview`
 
 Function that allows you to add behavior for analytics. By default it tries to track
 a pageview with Google Analytics (if it exists on the page).
@@ -393,9 +393,13 @@ It's called every time a page is switched, even for history navigation.
 
 Set to `false` to disable this behavior.
 
-##### `scrollTo` (Integer, default: `0`)
+##### `scrollTo` (Integer | \[Integer, Integer\] | False, default: `0`)
 
-Value (in px from the top of the page) to scroll to when a page is switched.
+When set to an integer, this is the value (in px from the top of the page) to scroll to when a page is switched.
+
+When set to an array of 2 integers (\[x, y\]), this is the value to scroll both horizontally and vertically.
+
+Set this to `false` to disable scrolling, which will mean the page will stay in that same position it was before loading the new elements.
 
 ##### `scrollRestoration` (Boolean, default: `true`)
 
