@@ -4,7 +4,7 @@
 
 > Easily enable fast AJAX navigation on any website (using pushState() + XHR)
 
-Pjax is ~~a jQuery plugin~~ **a standalone JavaScript module** that uses
+Pjax is **a standalone JavaScript module** that uses
 AJAX (XmlHttpRequest) and
 [pushState()](https://developer.mozilla.org/en-US/docs/Web/Guide/API/DOM/Manipulating_the_browser_history)
 to deliver a fast browsing experience.
