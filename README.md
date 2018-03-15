@@ -99,7 +99,7 @@ So we want to update `[".my-Header", ".my-Content", ".my-Sidebar"]`, **without r
 We do this by telling Pjax to listen on `a` tags and use CSS selectors defined above (without forgetting minimal meta):
 
 ``` javascript
-new Pjax({ selectors: ["title", ".my-Header", ".my-Content", ".my-Sidebar"] })
+var pjax = new Pjax({ selectors: ["title", ".my-Header", ".my-Content", ".my-Sidebar"] })
 ```
 
 Now, when someone in a Pjax-compatible browser clicks "blah", the content of all selectors will be replaced with the one found in the "blah" content.
@@ -133,7 +133,7 @@ Let's talk more about the most basic way to get started.
 When instantiating `Pjax`, you can pass options in to the constructor as an object:
 
 ```js
-new Pjax({
+var pjax = new Pjax({
   elements: "a", // default is "a[href], form[action]"
   selectors: ["title", ".my-Header", ".my-Content", ".my-Sidebar"]
 })
@@ -149,7 +149,7 @@ In that case, you can do two different things:
 
 ```js
 // use case 1
-new Pjax({ elements: "a.js-Pjax" })
+var pjax = new Pjax({ elements: "a.js-Pjax" })
 
 
 // use case 2
@@ -157,7 +157,7 @@ Pjax.prototype.getElements = function() {
   return document.getElementsByClassName(".js-Pjax")
 }
 
-new Pjax()
+var pjax = new Pjax()
 ```
 
 #### `loadUrl(href, [options])`
@@ -241,7 +241,7 @@ Keys should be one of the defined selectors.
 Examples:
 
 ```js
-new Pjax({
+var pjax = new Pjax({
   selectors: ["title", ".Navbar", ".js-Pjax"],
   switches: {
     // "title": Pjax.switches.outerHTML // default behavior
@@ -287,7 +287,7 @@ This is very convenient when you use something like [Animate.css](https://github
 with or without [WOW.js](https://github.com/matthieua/WOW).
 
 ```js
-new Pjax({
+var pjax = new Pjax({
   selectors: ["title", ".js-Pjax"],
   switches: {
     ".js-Pjax": Pjax.switches.sideBySide
@@ -503,7 +503,7 @@ function whenDOMReady() {
 
 whenDOMReady()
 
-new Pjax()
+var pjax = new Pjax()
 
 document.addEventListener("pjax:success", whenDOMReady)
 ```
@@ -526,7 +526,7 @@ function whenContainerReady() {
 }
 whenContainerReady()
 
-new Pjax()
+var pjax = new Pjax()
 
 document.addEventListener("pjax:success", whenContainerReady)
 ```
