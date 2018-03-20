@@ -57,3 +57,81 @@ tape("request headers are sent properly", function(t) {
   })
 })
 
+tape("HTTP status codes other than 200 are handled properly", function(t) {
+  var url = "https://httpbin.org/status/400"
+
+  sendRequest(url, {}, function(responseText, request) {
+    t.equals(responseText, null, "responseText is null")
+    t.equals(request.status, 400, "HTTP status code is correct")
+
+    t.end()
+  })
+})
+
+tape.skip("XHR error is handled properly", function(t) {
+  var url = "https://encrypted.google.com/foobar"
+
+  sendRequest(url, {}, function(responseText) {
+    t.equals(responseText, null, "responseText is null")
+
+    t.end()
+  })
+})
+
+tape("POST body data is sent properly", function(t) {
+  var url = "https://httpbin.org/post"
+  var params = [{
+    name: "test",
+    value: "1"
+  }];
+  var options = {
+    requestOptions: {
+      requestMethod: "POST",
+      requestParams: params
+    }
+  }
+
+  sendRequest(url, options, function(responseText) {
+    var response = JSON.parse(responseText)
+
+    t.same(response.form[params[0].name], params[0].value, "requestParams were sent properly")
+    t.equals(response.headers["Content-Type"], "application/x-www-form-urlencoded", "Content-Type header was set properly")
+
+    t.end()
+  })
+})
+
+tape("GET query data is sent properly", function(t) {
+  var url = "https://httpbin.org/get"
+  var params = [{
+    name: "test",
+    value: "1"
+  }];
+  var options = {
+    requestOptions: {
+      requestParams: params
+    }
+  }
+
+  sendRequest(url, options, function(responseText) {
+    var response = JSON.parse(responseText)
+
+    t.same(response.args[params[0].name], params[0].value, "requestParams were sent properly")
+
+    t.end()
+  })
+})
+
+tape("XHR timeout is handled properly", function(t) {
+  var url = "https://httpbin.org/delay/5"
+  var options = {
+    timeout: 1000
+  }
+
+  sendRequest(url, options, function(responseText) {
+    t.equals(responseText, null, "responseText is null")
+
+    t.end()
+  })
+})
+

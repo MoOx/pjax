@@ -88,3 +88,56 @@ tape("test options are not modified by attachLink", function(t) {
 
   t.end()
 })
+
+tape("test link triggered by keyboard", function(t) {
+  var a = document.createElement("a")
+  var pjax = {
+    options: {},
+    loadUrl: function() {
+      t.equal(a.getAttribute(attr), "load", "triggering a internal link actually loads the page")
+    }
+  }
+
+  t.plan(3)
+
+  attachLink.call(pjax, a)
+
+  a.href = window.location.protocol + "//" + window.location.host + "/internal"
+
+  trigger(a, "keyup", {keyCode: 14})
+  t.equal(a.getAttribute(attr), "", "keycode other than 13 doesn't trigger anything")
+
+  trigger(a, "keyup", {keyCode: 13, metaKey: true})
+  t.equal(a.getAttribute(attr), "modifier", "event key modifier stop behavior")
+
+  trigger(a, "keyup", {keyCode: 13})
+  // see loadUrl defined above
+
+  t.end()
+})
+
+tape("test link with the same URL as the current one, when currentUrlFullReload set to true", function(t) {
+  var a = document.createElement("a")
+  var pjax = {
+    options: {
+      currentUrlFullReload: true
+    },
+    reload: function() {
+      t.pass("this.reload() was called correctly")
+    },
+    loadUrl: function() {
+      t.fail("loadUrl() was called wrongly")
+    }
+  }
+
+  t.plan(2)
+
+  attachLink.call(pjax, a)
+
+  a.href = window.location.href
+
+  trigger(a, "click")
+  t.equal(a.getAttribute(attr), "reload", "reload stop behavior")
+
+  t.end()
+})

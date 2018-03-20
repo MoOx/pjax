@@ -18,5 +18,10 @@ tape("test parse element prototype method", function(t) {
     parseElement.call(pjax, form)
   }, "<form> element can be parsed")
 
+  t.throws(function() {
+    var el = document.createElement("div")
+    parseElement.call(pjax, el)
+  }, "<div> element cannot be parsed")
+
   t.end()
 })

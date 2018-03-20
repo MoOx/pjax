@@ -98,3 +98,57 @@ tape("test options are not modified by attachForm", function(t) {
 
   t.end()
 })
+
+tape("test submit triggered by keyboard", function(t) {
+  var form = document.createElement("form")
+  var pjax = {
+    options: {},
+    loadUrl: function() {
+      t.equal(form.getAttribute(attr), "submit", "triggering a internal link actually submits the form")
+    }
+  }
+
+  t.plan(2)
+
+  attachForm.call(pjax, form)
+
+  form.action = window.location.protocol + "//" + window.location.host + "/internal"
+
+  trigger(form, "keyup", {keyCode: 14})
+  t.equal(form.getAttribute(attr), "", "keycode other than 13 doesn't trigger anything")
+
+  trigger(form, "keyup", {keyCode: 13})
+  // see loadUrl defined above
+
+  t.end()
+})
+
+tape("test form elements parsed correctly", function(t) {
+  t.plan(1)
+
+  var form = document.createElement("form")
+  var input = document.createElement("input")
+  input.name = "input"
+  input.value = "value"
+  form.appendChild(input)
+
+  var params = [{
+    name: "input",
+    value: "value"
+  }]
+  var pjax = {
+    options: {},
+    loadUrl: function(href, options) {
+      t.same(options.requestOptions.requestParams, params, "form elements parsed correctly")
+    }
+  }
+
+  attachForm.call(pjax, form)
+
+  form.action = window.location.protocol + "//" + window.location.host + "/internal"
+
+  trigger(form, "submit")
+  // see loadUrl defined above
+
+  t.end()
+})
