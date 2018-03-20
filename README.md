@@ -445,9 +445,13 @@ Enables verbose mode. Useful to debug page layout differences.
 
 When set to true, clicking on a link that points to the current URL will trigger a full page reload.
 
-The default is `false`, so clicking on such a link will do nothing.
+When set to `false`, clicking on such a link will cause Pjax to load the 
+current page like any page.
 If you want to add some custom behavior, add a click listener to the link,
 and set `preventDefault` to true, to prevent Pjax from receiving the event.
+
+Note: this must be done before Pjax is instantiated. Otherwise, Pjax's 
+event handler will be called first, and preventDefault() won't be called yet.
 
 Here is some sample code:
 
@@ -465,6 +469,8 @@ Here is some sample code:
       }
     })
   }
+  
+  var pjax = new Pjax()
 ```
 
 (Note that if `cacheBust` is set to true, the code that checks if the href
