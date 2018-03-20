@@ -1,4 +1,6 @@
 declare class Pjax {
+  options: Pjax.IOptions;
+
   constructor(options?: Partial<Pjax.IOptions>);
 
   static switches: {
@@ -91,7 +93,7 @@ declare class Pjax {
    *   }
    * </pre>
    */
-  [key: string]: Function;
+  [key: string]: Function | Pjax.IOptions;
 }
 
 declare namespace Pjax {
@@ -180,7 +182,8 @@ type ElementFunction = (el: Element) => void;
 declare enum DefaultSwitches {
   innerHTML = "innerHTML",
   ouetrHTML = "outerHTML",
-  sideBySide = "sideBySide"
+  sideBySide = "sideBySide",
+  replaceNode = "replaceNode"
 }
 
 export = Pjax;
