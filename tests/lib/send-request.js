@@ -38,3 +38,22 @@ tape("test xhr request", function(t) {
   })
   t.end()
 })
+
+tape("request headers are sent properly", function(t) {
+  var url = "https://httpbin.org/headers"
+  var options = {
+    selectors: ["div.pjax", "div.container"]
+  }
+
+  sendRequest(url, options, function(responseText) {
+    var headers = JSON.parse(responseText).headers
+
+    t.equals(headers["X-Requested-With"], "XMLHttpRequest", "X-Requested-With header is set correctly")
+    // Httpbin.org changes the case to 'X-Pjax'
+    t.equals(headers["X-Pjax"], "true", "X-PJAX header is set correctly")
+    t.equals(headers["X-Pjax-Selectors"], "[\"div.pjax\",\"div.container\"]", "X-PJAX-Selectors header is set correctly")
+
+    t.end()
+  })
+})
+

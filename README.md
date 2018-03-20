@@ -1,6 +1,6 @@
 # Pjax
 
-[![Build Status](http://img.shields.io/travis/MoOx/pjax.svg)](https://travis-ci.org/MoOx/pjax).
+[![Build Status](https://img.shields.io/travis/MoOx/pjax.svg)](https://travis-ci.org/MoOx/pjax).
 
 > Easily enable fast AJAX navigation on any website (using pushState() + XHR)
 
@@ -14,6 +14,8 @@ _It allows you to completely transform the user experience of standard websites
 especially for users with low bandwidth connection._
 
 **No more full page reloads. No more multiple HTTP requests.**
+
+_Pjax does not rely on other libraries, like jQuery or similar. It is written entirely in vanilla JS._
 
 ## Installation
 
@@ -30,10 +32,6 @@ especially for users with low bandwidth connection._
   ```html
   <script src="https://cdn.jsdelivr.net/npm/pjax@VERSION/pjax.min.js"></script>
   ```
-
-## No dependencies
-
-_Pjax does not rely on other libraries, like jQuery or similar. It is written entirely in vanilla JS._
 
 ## How Pjax works
 
@@ -494,6 +492,36 @@ All events are fired from the _document_, not the link that was clicked.
 document.addEventListener('pjax:send', topbar.show)
 document.addEventListener('pjax:complete', topbar.hide)
 ```
+
+### HTTP Headers
+
+Pjax uses several custom headers when it makes and receives HTTP requests. 
+If the requests are going to your server, you can use those headers for
+some meta information about the response.
+
+##### Request headers
+
+Pjax sends the following headers with every request:
+
+* `X-Requested-With: "XMLHttpRequest"`
+* `X-PJAX: "true"`
+* `X-PJAX-Selectors`: A serialized JSON array of selectors, taken from 
+`options.selectors`. You can use this to send back only the elements that 
+Pjax will use to switch, instead of sending the whole page. Use `JSON.parse()` 
+server-side to deserialize it back to an array.
+
+##### Response headers
+
+Pjax looks for the following headers on the response:
+
+* `X-PJAX-URL` or `X-XHR-Redirected-To`
+
+  Pjax first checks the `responseURL` property on the XHR object to 
+  check if the request was redirected by the server. Most browsers support 
+  this, but not all. To ensure Pjax will be able to tell when the request 
+  is redirected, you can include one of these headers with the response, 
+  set to the final URL.
+
 
 #### Note about DOM ready state
 
