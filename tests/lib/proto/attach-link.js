@@ -5,7 +5,7 @@ var trigger = require("../../../lib/events/trigger")
 var attachLink = require("../../../lib/proto/attach-link")
 
 var a = document.createElement("a")
-var attr = "data-pjax-click-state"
+var attr = "data-pjax-state"
 var preventDefault = function(e) { e.preventDefault() }
 
 tape("test attach link prototype method", function(t) {
