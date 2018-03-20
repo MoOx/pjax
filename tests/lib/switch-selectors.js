@@ -1,18 +1,20 @@
 var tape = require("tape")
 
 var switchesSelectors = require("../../lib/switches-selectors.js")
+var noop = require("../../lib/util/noop")
+
+var pjax = {
+  onSwitch: function() {
+    console.log("Switched")
+  },
+  state: {},
+  log: noop
+}
 
 // @author darylteo
 tape("test switchesSelectors", function(t) {
   // switchesSelectors relies on a higher level function callback
   // should really be passed in instead so I'll leave it here as a TODO:
-  var pjax = {
-    onSwitch: function() {
-      console.log("Switched")
-    },
-    state: {}
-  }
-
   var tmpEl = document.implementation.createHTMLDocument()
 
   // a div container is used because swapping the containers

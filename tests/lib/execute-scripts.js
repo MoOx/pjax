@@ -2,7 +2,7 @@ var tape = require("tape")
 
 var executeScripts = require("../../lib/execute-scripts")
 
-tape("test executeScripts method", function(t) {
+tape("test executeScripts method when the script tag is inside a container", function(t) {
   document.body.className = ""
 
   var container = document.createElement("div")
