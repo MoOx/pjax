@@ -65,7 +65,7 @@ tape("test attach form preventDefaulted events", function(t) {
   var loadUrlCalled = false
   var form = document.createElement("form")
 
-  // This needs to be before the call to attachFormk()
+  // This needs to be before the call to attachForm()
   on(form, "submit", function(event) { event.preventDefault() })
 
   attachForm.call({
