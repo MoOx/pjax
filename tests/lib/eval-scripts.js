@@ -14,8 +14,8 @@ tape("test evalScript method", function(t) {
   t.equal(document.body.className, "executed", "script has been properly executed")
 
   script.innerHTML = "document.write('failure')"
-  document.body.text = "document.write hasn't been executed"
-  var bodyText = document.body.text
+  var bodyText = "document.write hasn't been executed"
+  document.body.text = bodyText
   evalScript(script)
   t.equal(document.body.text, bodyText, "document.write hasn't been executed")
 

@@ -4,20 +4,18 @@ var on = require("../../../lib/events/on")
 var trigger = require("../../../lib/events/trigger")
 var attachForm = require("../../../lib/proto/attach-form")
 
-var form = document.createElement("form")
-var attr = "data-pjax-click-state"
-var preventDefault = function(e) { e.preventDefault() }
+var attr = "data-pjax-state"
 
 tape("test attach form prototype method", function(t) {
-  t.plan(7)
+  var form = document.createElement("form")
+  var loadUrlCalled = false
 
   attachForm.call({
-    options: {},
-    reload: function() {
-      t.equal(form.getAttribute(attr), "reload", "triggering a simple reload will just submit the form")
+    options: {
+      currentUrlFullReload: true
     },
     loadUrl: function() {
-      t.equal(form.getAttribute(attr), "submit", "triggering a post to the next page")
+      loadUrlCalled = true
     }
   }, form)
 
@@ -29,50 +27,57 @@ tape("test attach form prototype method", function(t) {
 
   form.action = internalUri + "#anchor"
   trigger(form, "submit")
-  t.equal(form.getAttribute(attr), "anchor-present", "internal anchor stop behavior")
+  t.equal(form.getAttribute(attr), "anchor", "internal anchor stop behavior")
 
   window.location.hash = "#anchor"
   form.action = internalUri + "#another-anchor"
   trigger(form, "submit")
-  t.notEqual(form.getAttribute(attr), "anchor", "differents anchors stop behavior")
+  t.equal(form.getAttribute(attr), "anchor", "different anchors stop behavior")
   window.location.hash = ""
 
   form.action = internalUri + "#"
   trigger(form, "submit")
   t.equal(form.getAttribute(attr), "anchor-empty", "empty anchor stop behavior")
 
-  form.action = internalUri
+  form.action = window.location.href
   trigger(form, "submit")
-  // see reload defined above
+  t.equal(form.getAttribute(attr), "reload", "submitting when currentUrlFullReload is true will submit normally, without XHR")
+  t.equal(loadUrlCalled, false, "loadUrl() not called")
 
   form.action = window.location.protocol + "//" + window.location.host + "/internal"
   form.method = "POST"
   trigger(form, "submit")
-  // see post defined above
+  t.equal(form.getAttribute(attr), "submit", "triggering a POST request to the next page")
+  t.equal(loadUrlCalled, true, "loadUrl() called correctly")
 
+  loadUrlCalled = false
+  form.setAttribute(attr, "")
   form.action = window.location.protocol + "//" + window.location.host + "/internal"
   form.method = "GET"
   trigger(form, "submit")
-  // see post defined above
+  t.equal(form.getAttribute(attr), "submit", "triggering a GET request to the next page")
+  t.equal(loadUrlCalled, true, "loadUrl() called correctly")
 
   t.end()
 })
 
 tape("test attach form preventDefaulted events", function(t) {
-  var callbacked = false
+  var loadUrlCalled = false
   var form = document.createElement("form")
+
+  // This needs to be before the call to attachForm()
+  on(form, "submit", function(event) { event.preventDefault() })
 
   attachForm.call({
     options: {},
     loadUrl: function() {
-      callbacked = true
+      loadUrlCalled = true
     }
   }, form)
 
   form.action = "#"
-  on(form, "submit", preventDefault)
   trigger(form, "submit")
-  t.equal(callbacked, false, "events that are preventDefaulted should not fire callback")
+  t.equal(loadUrlCalled, false, "events that are preventDefaulted should not fire callback")
 
   t.end()
 })
@@ -90,6 +95,60 @@ tape("test options are not modified by attachForm", function(t) {
 
   t.equal(1, Object.keys(options).length, "options object that is passed in should not be modified")
   t.equal("bar", options.foo, "options object that is passed in should not be modified")
+
+  t.end()
+})
+
+tape("test submit triggered by keyboard", function(t) {
+  var form = document.createElement("form")
+  var pjax = {
+    options: {},
+    loadUrl: function() {
+      t.equal(form.getAttribute(attr), "submit", "triggering a internal link actually submits the form")
+    }
+  }
+
+  t.plan(2)
+
+  attachForm.call(pjax, form)
+
+  form.action = window.location.protocol + "//" + window.location.host + "/internal"
+
+  trigger(form, "keyup", {keyCode: 14})
+  t.equal(form.getAttribute(attr), "", "keycode other than 13 doesn't trigger anything")
+
+  trigger(form, "keyup", {keyCode: 13})
+  // see loadUrl defined above
+
+  t.end()
+})
+
+tape("test form elements parsed correctly", function(t) {
+  t.plan(1)
+
+  var form = document.createElement("form")
+  var input = document.createElement("input")
+  input.name = "input"
+  input.value = "value"
+  form.appendChild(input)
+
+  var params = [{
+    name: "input",
+    value: "value"
+  }]
+  var pjax = {
+    options: {},
+    loadUrl: function(href, options) {
+      t.same(options.requestOptions.requestParams, params, "form elements parsed correctly")
+    }
+  }
+
+  attachForm.call(pjax, form)
+
+  form.action = window.location.protocol + "//" + window.location.host + "/internal"
+
+  trigger(form, "submit")
+  // see loadUrl defined above
 
   t.end()
 })

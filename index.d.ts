@@ -168,9 +168,23 @@ declare namespace Pjax {
      * will not work, due to the query string appended to force a cache bust).
      */
     currentUrlFullReload: boolean;
+
+    /**
+     * Hold the information to make an XHR request.
+     */
+    requestOptions?: {
+      requestUrl?: string;
+      requestMethod?: string;
+      requestParams?: IRequestParams[];
+    }
   }
 
   export type Switch = (oldEl: Element, newEl: Element, options?: IOptions, switchesOptions?: StringKeyedObject) => void;
+
+  export interface IRequestParams {
+    name: string,
+    value: string
+  }
 }
 
 interface StringKeyedObject<T = any> {
