@@ -37,7 +37,9 @@ tape("test events triggered when handleResponse(false) is called", function(t) {
 
 tape("test when handleResponse() is called normally", function(t) {
   var pjax = {
-    options: {},
+    options: {
+      test: 1
+    },
     loadContent: noop,
     state: {}
   }
@@ -55,7 +57,9 @@ tape("test when handleResponse() is called normally", function(t) {
     scrollPos: [0, 0]
   }, "window.history.state is set correctly")
   t.equals(pjax.state.href, "href", "this.state.href is set correctly")
-  t.same(pjax.state.options, pjax.options, "this.state.options is set correctly")
+  t.equals(Object.keys(pjax.state.options).length, 2, "this.state.options is set correctly")
+  t.same(pjax.state.options.request, request, "this.state.options is set correctly")
+  t.equals(pjax.state.options.test, 1, "this.state.options is set correctly")
 
   t.end()
 })

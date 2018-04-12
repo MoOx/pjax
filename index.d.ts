@@ -67,8 +67,9 @@ declare class Pjax {
    * @param {string} requestText The raw text of the response. Same as <code>request.responseText</code>.
    * @param {XMLHttpRequest} request The XHR object.
    * @param {string} href The original URI used to initiate the request.
+   * @param options The Pjax options object used for the request
    */
-  handleResponse(requestText: string, request: XMLHttpRequest, href: string): void;
+  handleResponse(requestText: string, request: XMLHttpRequest, href: string, options?: Pjax.IOptions): void;
 
   /**
    * Initiates the request by calling <code>doRequest()</code>.
