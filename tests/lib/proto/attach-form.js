@@ -166,7 +166,7 @@ tape("test form.enctype=\"multipart/form-data\"", function(t) {
   var pjax = {
     options: {},
     loadUrl: function(href, options) {
-      t.equals(options.requestOptions.requestParams.length, 0, "form elements not parsed manually")
+      t.equals(options.requestOptions.requestParams, undefined, "form elements not parsed manually")
       t.true(options.requestOptions.formData instanceof FormData, "requestOptions.formData is a FormData")
       t.equals(Array.from(options.requestOptions.formData.entries()).length, 1, "correct number of FormData elements")
       t.equals(options.requestOptions.formData.get("input"), "value", "FormData element value set correctly")
