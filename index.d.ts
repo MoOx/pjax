@@ -177,6 +177,7 @@ declare namespace Pjax {
       requestUrl?: string;
       requestMethod?: string;
       requestParams?: IRequestParams[];
+      formData?: FormData;
     }
   }
 

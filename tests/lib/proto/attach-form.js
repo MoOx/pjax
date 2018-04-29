@@ -152,3 +152,33 @@ tape("test form elements parsed correctly", function(t) {
 
   t.end()
 })
+
+tape("test form.enctype=\"multipart/form-data\"", function(t) {
+  t.plan(4)
+
+  var form = document.createElement("form")
+  form.enctype = "multipart/form-data"
+  var input = document.createElement("input")
+  input.name = "input"
+  input.value = "value"
+  form.appendChild(input)
+
+  var pjax = {
+    options: {},
+    loadUrl: function(href, options) {
+      t.equals(options.requestOptions.requestParams, undefined, "form elements not parsed manually")
+      t.true(options.requestOptions.formData instanceof FormData, "requestOptions.formData is a FormData")
+      t.equals(Array.from(options.requestOptions.formData.entries()).length, 1, "correct number of FormData elements")
+      t.equals(options.requestOptions.formData.get("input"), "value", "FormData element value set correctly")
+    }
+  }
+
+  attachForm.call(pjax, form)
+
+  form.action = window.location.protocol + "//" + window.location.host + "/internal"
+
+  trigger(form, "submit")
+  // see loadUrl defined above
+
+  t.end()
+})
