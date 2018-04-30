@@ -1,3 +1,26 @@
+# 0.2.6 - 2018-04-30
+
+- Fixed: Form submission for GET requests.
+  ([#129](https://github.com/MoOx/pjax/pull/129) - @robinnorth)
+- Fixed: Refactor `loadUrl()` to make manually calling simpler.
+  ([#134](https://github.com/MoOx/pjax/pull/134) - @robinnorth)
+- Fixed: Support multiple select fields in form submissions.
+  ([#147](https://github.com/MoOx/pjax/pull/147) - @robinnorth)
+- Fixed: Use the same options object in `handle-response` as in `send-request`. This way, `pjax.state.options` will also have the request options.
+  ([#148](https://github.com/MoOx/pjax/pull/148) - @BehindTheMath)
+- Added: Move the XHR callback to a separate method, and trigger an error event if the response cannot be parsed.
+  ([#137](https://github.com/MoOx/pjax/pull/137) - @BehindTheMath)
+- Added: TypeScript definitions.
+  ([#138](https://github.com/MoOx/pjax/pull/138) - @BehindTheMath)
+- Added: `replaceNode` switch, as an alternative to the `outerHTML` switch.
+  ([#141](https://github.com/MoOx/pjax/pull/141) - @BehindTheMath)
+- Added: `X-PJAX-Selectors` HTTP header. This is a serialized JSON array of selectors, taken from `options.selectors`. You can use this to send back only the elements that Pjax will use to switch, instead of sending the whole page.
+  ([#144](https://github.com/MoOx/pjax/pull/144) - @BehindTheMath)
+- Added: An option to use `FormData` to submit forms.
+  ([#153](https://github.com/MoOx/pjax/pull/153) - @BehindTheMath)
+- Added: Tests.
+  ([f98f2dd](https://github.com/MoOx/pjax/commit/f98f2dd63b48113ff91b6bd8808257bfc723ef6b), [#145](https://github.com/MoOx/pjax/pull/145) - @robinnorth, @BehindTheMath)
+
 # 0.2.5 - 2018-02-02
 
 - Fixed: Async switch functions now work correctly, because the DOM is now parsed after all the switches finish.
