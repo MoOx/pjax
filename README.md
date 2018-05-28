@@ -200,6 +200,24 @@ pjax.handleResponse = function(responseText, request, href) {
 }
 ```
 
+
+#### `refresh([el])`
+
+Use this method to bind Pjax to children of a DOM element that didn't exist when Pjax was initialised e.g. content inserted dynamically by another library or script. If called with no arguments, Pjax will parse the entire document again to look for newly-inserted elements.
+
+```js
+// Inside a callback or Promise that runs after new DOM content has been inserted
+var newContent = document.querySelector(".new-content");
+
+pjax.refresh(newContent);
+```
+
+
+#### `reload()`
+
+A helper shortcut for `window.location.reload()`. Used to force a page reload.
+
+
 ### Options
 
 ##### `elements` (String, default: `"a[href], form[action]"`)
