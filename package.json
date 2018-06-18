@@ -22,7 +22,8 @@
     "index.js",
     "lib",
     "pjax.js",
-    "pjax.min.js"
+    "pjax.min.js",
+    "index.d.ts"
   ],
   "types": "index.d.ts",
   "devDependencies": {
