@@ -36,6 +36,7 @@ var Pjax = function(options) {
         var opt = clone(this.options)
         opt.url = st.state.url
         opt.title = st.state.title
+        // Since state already exists, prevent it from being pushed again
         opt.history = false
         opt.scrollPos = st.state.scrollPos
         if (st.state.uid < this.lastUid) {

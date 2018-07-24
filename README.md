@@ -172,7 +172,7 @@ pjax.loadUrl("/your-url")
 pjax.loadUrl("/your-other-url", {timeout: 10})
 ```
 
-#### `handleResponse(responseText, request, href)`
+#### `handleResponse(responseText, request, href, options)`
 
 This method takes the raw response, processes the URL, then calls `pjax.loadContent()` to actually load it into the DOM.
 
@@ -181,6 +181,7 @@ It is passed the following arguments:
 * **responseText** (string): This is the raw response text. This is equivalent to `request.responseText`.
 * **request** (XMLHttpRequest): This is the XHR object.
 * **href** (string): This is the URL that was passed to `loadUrl()`.
+* **options** (object): This is an object with the options for this request. The structure basically matches the regular options object, with a few extra internal properties.
 
 You can override this if you want to process the data before, or instead of, it being loaded into the DOM.
 
@@ -191,9 +192,9 @@ var pjax = new Pjax();
 
 pjax._handleResponse = pjax.handleResponse;
 
-pjax.handleResponse = function(responseText, request, href) {
+pjax.handleResponse = function(responseText, request, href, options) {
   if (request.responseText.match("<html")) {
-    pjax._handleResponse(responseText, request, href);
+    pjax._handleResponse(responseText, request, href, options);
   } else {
     // handle response here
   }
