@@ -1,3 +1,18 @@
+# 0.2.7 - 2018-08-15
+
+- Fixed: Parsing values of option elements in forms.
+  ([#162](https://github.com/MoOx/pjax/pull/162) - @BehindTheMath)
+- Fixed: Added index.d.ts to package.json so it will be installed by npm.
+  ([c589ab9](https://github.com/MoOx/pjax/commit/c589ab9c25bee6161bf3e557eaca44e51c14fb89) - @BehindTheMath)
+- Fixed: `options.history` to correctly parse being set to false.
+  ([#165](https://github.com/MoOx/pjax/pull/165) - @BehindTheMath).
+- Fixed: Pass the current `options` object to `loadContent()`.
+  ([#171](https://github.com/MoOx/pjax/pull/171) - @BehindTheMath)
+- Fixed: Ensure correct XHR encoding for multipart/form-data forms
+  ([#174](https://github.com/MoOx/pjax/pull/174) - @BehindTheMath)
+- Added: More documentation.
+  ([#160](https://github.com/MoOx/pjax/pull/160), [#171](https://github.com/MoOx/pjax/pull/171) - @robinnorth, @BehindTheMath)
+
 # 0.2.6 - 2018-04-30
 
 - Fixed: Form submission for GET requests.
