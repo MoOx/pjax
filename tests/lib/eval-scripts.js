@@ -21,3 +21,21 @@ tape("test evalScript method", function(t) {
 
   t.end()
 })
+
+tape.only("evalScript should not throw an error if the script removed itself", function(t) {
+  var script = document.createElement("script")
+  script.id = "myScript";
+  script.innerHTML = "const script = document.querySelector('#myScript');" +
+    "script.parentNode.removeChild(script);";
+
+  try {
+    evalScript(script);
+
+    t.pass("Missing script tested successfully");
+  } catch (e) {
+    console.error(e);
+    t.fail("Attempted to remove missing script");
+  }
+
+  t.end();
+})
