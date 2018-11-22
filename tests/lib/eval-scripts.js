@@ -22,7 +22,7 @@ tape("test evalScript method", function(t) {
   t.end()
 })
 
-tape.only("evalScript should not throw an error if the script removed itself", function(t) {
+tape("evalScript should not throw an error if the script removed itself", function(t) {
   var script = document.createElement("script")
   script.id = "myScript";
   script.innerHTML = "const script = document.querySelector('#myScript');" +
