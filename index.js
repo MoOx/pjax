@@ -109,20 +109,23 @@ Pjax.prototype = {
     // since we are forced to use documentElement.innerHTML (outerHTML can't be used for <html>)
     var htmlRegex = /<html[^>]+>/gi
     var htmlAttribsRegex = /\s?[a-z:]+(?:\=(?:\'|\")[^\'\">]+(?:\'|\"))*/gi
-    var matches = html.match(htmlRegex)
-    if (matches && matches.length) {
-      matches = matches[0].match(htmlAttribsRegex)
-      if (matches.length) {
-        matches.shift()
-        matches.forEach(function(htmlAttrib) {
-          var attr = htmlAttrib.trim().split("=")
-          if (attr.length === 1) {
-            tmpEl.documentElement.setAttribute(attr[0], true)
-          }
-          else {
-            tmpEl.documentElement.setAttribute(attr[0], attr[1].slice(1, -1))
-          }
-        })
+    
+    if (html != undefined) {
+      var matches = html.match(htmlRegex)
+      if (matches && matches.length) {
+        matches = matches[0].match(htmlAttribsRegex)
+        if (matches.length) {
+          matches.shift()
+          matches.forEach(function(htmlAttrib) {
+            var attr = htmlAttrib.trim().split("=")
+            if (attr.length === 1) {
+              tmpEl.documentElement.setAttribute(attr[0], true)
+            }
+            else {
+              tmpEl.documentElement.setAttribute(attr[0], attr[1].slice(1, -1))
+            }
+          })
+        }
       }
     }
 
