@@ -1,0 +1,4 @@
+pjax.js
+node_modules/**
+pjax.min.js
+*.json
