@@ -45,7 +45,7 @@
     "uglify-js": "^3.3.8"
   },
   "scripts": {
-    "lint": "eslint **/*.js",
+    "lint": "eslint .",
     "standalone": "browserify index.js --standalone Pjax > pjax.js",
     "build": "npm run standalone && uglifyjs pjax.js -o pjax.min.js",
     "build-debug": "browserify index.js --debug --standalone Pjax > pjax.js",
@@ -64,7 +64,7 @@
   },
   "lint-staged": {
     "*.js": [
-      "eslint --fix **/*.js",
+      "eslint --fix",
       "prettier --write",
       "git add"
     ]
