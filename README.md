@@ -14,12 +14,7 @@ _Pjax does not rely on other libraries, like jQuery or similar. It is written en
 
 ## Installation
 
-- You can install Pjax from **npm**:
-  ```shell
-  npm install pjax
-  ```
-
-- You can also link directly to the [bundle](https://cdn.jsdelivr.net/npm/pjax/pjax.js):
+- You can link directly to the [bundle](https://cdn.jsdelivr.net/npm/pjax/pjax.js):
   ```html
   <script src="https://cdn.jsdelivr.net/npm/pjax@VERSION/pjax.js"></script>
   ```
@@ -28,6 +23,17 @@ _Pjax does not rely on other libraries, like jQuery or similar. It is written en
   ```html
   <script src="https://cdn.jsdelivr.net/npm/pjax@VERSION/pjax.min.js"></script>
   ```
+
+- You can also install Pjax from **npm**:
+  ```shell
+  npm install pjax
+  ```
+  **Note**: If you use this option, you will need to do one of the following:
+    - Link a script tag to either `pjax.js` or `pjax.min.js`. E.g.:
+    ```html
+    <script src="./node_modules/pjax/pjax.js"></script>
+    ```
+    - Use a bundler like Webpack. (`index.js` cannot be used in the browser without a bundler).
 
 ---
 
