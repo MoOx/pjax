@@ -35,6 +35,18 @@ _Pjax does not rely on other libraries, like jQuery or similar. It is written en
     ```
     - Use a bundler like Webpack. (`index.js` cannot be used in the browser without a bundler).
 
+- Or you can clone the repo and build the bundle from the source using npm:
+  ```shell
+  git clone https://github.com/MoOx/pjax.git
+  cd pjax
+  npm install
+  npm run build
+  ```
+  and then link a script tag to either `pjax.js` or `pjax.min.js`. E.g.:
+  ```html
+  <script src="./pjax.min.js"></script>
+  ```
+
 ---
 
 ## What Pjax Does
