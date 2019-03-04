@@ -1,7 +1,8 @@
 var tape = require("tape");
 
-var handleReponse = require("../../../lib/proto/handle-response");
+var handleResponse = require("../../../lib/proto/handle-response");
 var noop = require("../../../lib/util/noop");
+var loadContent = require("../../../index").prototype.loadContent;
 
 var href = "https://example.org/";
 
@@ -28,13 +29,16 @@ tape("test events triggered when handleResponse(false) is called", function(t) {
   document.addEventListener("pjax:complete", storeEventHandler);
   document.addEventListener("pjax:error", storeEventHandler);
 
-  handleReponse.bind(pjax)(false, null);
+  handleResponse.bind(pjax)(false, null);
 
   t.same(
     events,
     ["pjax:complete", "pjax:error"],
     "calling handleResponse(false) triggers 'pjax:complete' and 'pjax:error'"
   );
+
+  document.removeEventListener("pjax:complete", storeEventHandler);
+  document.removeEventListener("pjax:error", storeEventHandler);
 
   t.end();
 });
@@ -52,7 +56,7 @@ tape("test when handleResponse() is called normally", function(t) {
     getResponseHeader: noop
   };
 
-  handleReponse.bind(pjax)("", request, "href");
+  handleResponse.bind(pjax)("", request, "href");
 
   delete window.history.state.uid;
   t.same(
@@ -94,7 +98,7 @@ tape(
       getResponseHeader: noop
     };
 
-    handleReponse.bind(pjax)("", request, "");
+    handleResponse.bind(pjax)("", request, "");
 
     t.equals(
       pjax.state.href,
@@ -123,7 +127,7 @@ tape("test when handleResponse() is called normally with X-PJAX-URL", function(
     }
   };
 
-  handleReponse.bind(pjax)("", request, "");
+  handleResponse.bind(pjax)("", request, "");
 
   t.equals(pjax.state.href, href + "2", "this.state.href is set correctly");
 
@@ -147,7 +151,7 @@ tape(
       }
     };
 
-    handleReponse.bind(pjax)("", request, "");
+    handleResponse.bind(pjax)("", request, "");
 
     t.equals(pjax.state.href, href + "3", "this.state.href is set correctly");
 
@@ -167,7 +171,7 @@ tape("test when handleResponse() is called normally with a hash", function(t) {
     getResponseHeader: noop
   };
 
-  handleReponse.bind(pjax)("", request, href + "1#test");
+  handleResponse.bind(pjax)("", request, href + "1#test");
 
   t.equals(
     pjax.state.href,
@@ -206,7 +210,7 @@ tape("test try...catch for loadContent() when options.debug is true", function(
 
   t.throws(
     function() {
-      handleReponse.bind(pjax)("", request, "");
+      handleResponse.bind(pjax)("", request, "");
     },
     Error,
     "error is rethrown"
@@ -241,7 +245,7 @@ tape("test try...catch for loadContent()", function(t) {
   t.doesNotThrow(
     function() {
       t.equals(
-        handleReponse.bind(pjax)("", request, ""),
+        handleResponse.bind(pjax)("", request, ""),
         true,
         "this.latestChance() is called"
       );
@@ -252,3 +256,38 @@ tape("test try...catch for loadContent()", function(t) {
 
   t.end();
 });
+
+tape(
+  "test events triggered when loadContent() is called with a non-string html argument",
+  function(t) {
+    t.plan(3);
+
+    var options = {
+      test: 1
+    };
+
+    var events = [];
+
+    storeEventHandler = function(e) {
+      events.push(e.type);
+
+      t.equal(e.test, 1);
+    };
+
+    document.addEventListener("pjax:complete", storeEventHandler);
+    document.addEventListener("pjax:error", storeEventHandler);
+
+    loadContent(null, options);
+
+    t.same(
+      events,
+      ["pjax:complete", "pjax:error"],
+      "calling loadContent() with a non-string html argument triggers 'pjax:complete' and 'pjax:error'"
+    );
+
+    document.removeEventListener("pjax:complete", storeEventHandler);
+    document.removeEventListener("pjax:error", storeEventHandler);
+
+    t.end();
+  }
+);

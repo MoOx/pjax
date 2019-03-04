@@ -117,6 +117,12 @@ Pjax.prototype = {
   },
 
   loadContent: function(html, options) {
+    if (typeof html !== "string") {
+      trigger(document, "pjax:complete pjax:error", options);
+
+      return;
+    }
+
     var tmpEl = document.implementation.createHTMLDocument("pjax");
 
     // parse HTML attributes to copy them
