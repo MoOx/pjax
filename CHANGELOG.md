@@ -1,3 +1,16 @@
+# 0.2.8 - 2019-03-09
+
+- Fixed: Edge form support.
+  ([#178](https://github.com/MoOx/pjax/pull/178) - @robinnorth)
+- Fixed: Removed keyup event listener for forms.
+  ([#184](https://github.com/MoOx/pjax/pull/184) - @BehindTheMath)
+- Fixed: Bugs in evalScripts().
+  ([#186](https://github.com/MoOx/pjax/pull/186) - @BehindTheMath)
+- Fixed: Handle non-string HTML passed to loadContent().
+  ([#200](https://github.com/MoOx/pjax/pull/200) - @BehindTheMath)
+- Tooling: Switch linting to ESLint and Prettier.
+  ([#191](https://github.com/MoOx/pjax/pull/191) - @BehindTheMath)
+
 # 0.2.7 - 2018-08-15
 
 - Fixed: Parsing values of option elements in forms.
