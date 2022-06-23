@@ -31,7 +31,7 @@
     "eslint": "^5.7.0",
     "eslint-config-i-am-meticulous": "^11.0.0",
     "husky": "^1.2.0",
-    "jsdom": "^11.5.1",
+    "jsdom": "^16.5.0",
     "jsdom-global": "^3.0.2",
     "lint-staged": "^8.1.0",
     "npmpub": "^3.1.0",
